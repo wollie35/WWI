@@ -149,7 +149,9 @@ session_start();
                 {
                     ?>
                 <div class="square">
-                     <img src="includes/img/usb_launcher.PNG" alt="Banana-Gun" style="width: 150px">
+                    <a href="showProduct.php?productID=<?=$allProducts[$y][0]?>">
+                     <img src="includes/img/usb_launcher.PNG"  alt="Banana-Gun" style="width: 150px">
+                    </a>
 
                     <?='</br>' . $allProducts[$y][2]?>
                     <?php if (strlen($allProducts[$y][1]) > 40)
