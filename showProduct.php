@@ -12,7 +12,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>World Wide importers</title>
+    <title>Wide World Importers</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@ session_start();
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Word Wide Importers</a>
+        <a class="navbar-brand" href="#">Wide World      Importers</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -99,12 +99,14 @@ session_start();
             echo 'Opmerking van leverancier: ';
             if(!empty($selectedProduct[$x][4]))
             {
-                echo $selectedProduct[$x][4] . "</bt>";
+                echo $selectedProduct[$x][4] . "</br>";
             }
             else
             {
-                echo "X";
+                echo "X</br>";
             }
+
+            echo 'Rating: &#11088 &#11088 &#11088 &#9734 &#9734';
 
 
 
@@ -117,7 +119,7 @@ session_start();
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; World Wide Importers 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
     </div>
     <!-- /.container -->
 </footer>

@@ -12,7 +12,7 @@ session_start();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>World Wide importers</title>
+        <title>Wide World Importers</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@ session_start();
             <div class="row">
 
                 <div class="col-lg-3">
-                    <h1 class="my-4">World Wide Importers</h1>
+                    <h1 class="my-4">Wide World Importers</h1>
                     <?php
                     $rows = array('StockGroupID, StockGroupName');
                     $where = array(
@@ -149,7 +149,7 @@ session_start();
                 {
                     ?>
                 <div class="square">
-                    <a href="showProduct.php?productID=<?=$allProducts[$y][0]?>">
+                    <a target="_blank" href="showProduct.php?productID=<?=$allProducts[$y][0]?>">
                      <img src="includes/img/usb_launcher.PNG"  alt="Banana-Gun" style="width: 150px">
                     </a>
 
@@ -164,7 +164,7 @@ session_start();
                         echo $allProducts[$y][1];
                     }
                     ?>
-                        <input type="submit"  name="addToCart" value="<?=$allProducts[$y][0]?>"  />
+                        <input type="submit"  name="addToCart" dirname="" value="<?=$allProducts[$y][0]?>"  />
                     </div>
                     <?php
                     $y++;
@@ -214,37 +214,6 @@ session_start();
                     }
                 }
                 ?>
-
-
-                <div class="card mt-4">
-
-                    <div class="card-body">
-                        <h3 class="card-title">Product Name</h3>
-                        <h4>$24.99</h4>
-                        <p class="card-text">Bacon ipsum dolor amet biltong cupim leberkas filet mignon swine pig sausage turducken. Chicken sirloin brisket short ribs sausage, prosciutto rump. Doner bacon pancetta sirloin t-bone drumstick. Bacon short loin buffalo prosciutto. Pig strip steak shank, shoulder chicken pork chop fatback tail hamburger pastrami kevin!</p>
-                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                        4.0 stars
-                    </div>
-                </div>
-                <!-- /.card -->
-
-                <div class="card card-outline-secondary my-4">
-                    <div class="card-header">
-                        Product Reviews
-                    </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <a href="#" class="btn btn-success">Leave a Review</a>
-                    </div>
-                </div>
                 <!-- /.card -->
 
             </div>
@@ -258,7 +227,7 @@ session_start();
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; World Wide Importers 2018</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
         </div>
         <!-- /.container -->
     </footer>
