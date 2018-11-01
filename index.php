@@ -1,5 +1,6 @@
 <?php
 require_once "includes/init.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +120,16 @@ require_once "includes/init.php";
                     <input type="submit" name="submit">
                 </form>
 
+
+                <form method="post">
+                    <input type="submit" name="showBestellingSubmit">
+                </form>
+
+                <form method="post">
+                    <input type="submit" name="bestellingAfronden">
+                </form>
                 <?php
+
                 $rows = array('StockItemID','StockItemName, UnitPrice');
                 $where = array(
                     array(
@@ -145,19 +155,32 @@ require_once "includes/init.php";
                     ?>
                 <div class="square"><?=$allProducts[$y][1]?>
                         <?='</br>' . $allProducts[$y][2]?>
-                        <input type="submit" value="Voeg toe aan winkelwagen" name="addToCart<?=$allProducts[$y][0]?>"  />
+                </br>
+                        <input type="submit"  name="addToCart" value="<?=$allProducts[$y][0]?>"  />
                     </div>
                     <?php
                     $y++;
                 }
+
+
+                while(!isset($_POST['bestellingAfronden']))
+                {
+                    if(isset($_GET['addToCart']))
+                    {
+                        $bestellingen = array();
+
+                        $filtered = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                        $bestellingen[] = $filtered;
+                        //SESSIONS VOOR BESTELLING MAKEN 
+                    }
+                }
+
+
+
+
                 ?>
                 </form>
                 <?php
-
-                if(isset($_GET['addToCart']))
-
-
-                if(isset($_POST['']))
                 ?>
                 <?php
                 if (isset($_POST['submit'])) {
