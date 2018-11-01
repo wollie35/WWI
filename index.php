@@ -120,13 +120,8 @@ session_start();
                     <input type="submit" name="submit">
                 </form>
 
-
                 <form method="post">
-                    <input type="submit" name="showBestellingSubmit">
-                </form>
-
-                <form method="post">
-                    <input type="submit" name="bestellingAfronden">
+                    <input type="submit" class="btn btn-primar" name="bestellingAfronden">
                 </form>
                 <?php
 
@@ -153,9 +148,20 @@ session_start();
                 while ($y < count($allProducts))
                 {
                     ?>
-                <div class="square"><?=$allProducts[$y][1]?>
-                        <?='</br>' . $allProducts[$y][2]?>
-                </br>
+                <div class="square">
+                     <img src="includes/img/usb_launcher.PNG" alt="Banana-Gun" style="width: 150px">
+
+                    <?='</br>' . $allProducts[$y][2]?>
+                    <?php if (strlen($allProducts[$y][1]) > 40)
+                    {
+                        echo substr($allProducts[$y][1], 0, 40);
+                        echo '...';
+                    }
+                    else
+                    {
+                        echo $allProducts[$y][1];
+                    }
+                    ?>
                         <input type="submit"  name="addToCart" value="<?=$allProducts[$y][0]?>"  />
                     </div>
                     <?php
@@ -163,18 +169,16 @@ session_start();
                 }
 
 
-                while(!isset($_POST['bestellingAfronden']))
-                {
-                    if(isset($_GET['addToCart']))
-                    {
+                    if(isset($_GET['addToCart'])) {
                         $bestellingen = array();
-
                         $filtered = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
-                        $bestellingen[] = $filtered;
-                        //SESSIONS VOOR BESTELLING MAKEN 
-                    }
-                }
 
+                    }
+                    if(isset($_POST['bestellingAfronden']))
+                    {
+                        $_SESSION['bestelling'][] = $filtered;
+                        print_r($_SESSION['bestelling']);
+                    }
 
 
 
