@@ -117,37 +117,37 @@ require_once "includes/init.php";
                     <input type="submit" name="submit">
                 </form>
 
-<?php
-if (isset($_POST['submit'])) {
-    $rows = array('StockItemName');
-    $where = array(
-        array(
-            'name' => 'StockItemName',
-            'symbol' => 'LIKE',
-            'value' => '%' . $_POST['zoeken'] . '%',
-            'jointype' => '',
-            'jointable' => '',
-            'joinvalue1' => '',
-            'joinvalue2' => '',
-            'syntax' => '',
-        )
-    );
+                <?php
+                if (isset($_POST['submit'])) {
+                    $rows = array('StockItemName');
+                    $where = array(
+                        array(
+                            'name' => 'StockItemName',
+                            'symbol' => 'LIKE',
+                            'value' => '%' . $_POST['zoeken'] . '%',
+                            'jointype' => '',
+                            'jointable' => '',
+                            'joinvalue1' => '',
+                            'joinvalue2' => '',
+                            'syntax' => '',
+                        )
+                    );
 
-    //Select userEmail,userPassword, userRights, userFName, userLName
-    $search = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-    $countSeach = count($search) - 1;
-    if (empty($search)) {
-        echo "Er zijn geen resultaten gevonden!";
-    } else {
-        echo "Er zijn" . $countSeach . " resultaten gevonden!";
-    }
-    var_dump($search);
-}
-?>
+                    //Select userEmail,userPassword, userRights, userFName, userLName
+                    $search = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
+                    $countSeach = count($search) - 1;
+                    if (empty($search)) {
+                        echo "Er zijn geen resultaten gevonden!";
+                    } else {
+                        echo "Er zijn" . $countSeach . " resultaten gevonden!";
+                    }
+                    var_dump($search);
+                }
+                ?>
 
 
                 <div class="card mt-4">
-                    <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+
                     <div class="card-body">
                         <h3 class="card-title">Product Name</h3>
                         <h4>$24.99</h4>
