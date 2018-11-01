@@ -121,9 +121,17 @@ session_start();
                 </form>
 
                 <form method="post">
-                    <input type="submit" class="btn btn-primar" name="bestellingAfronden">
+                    <input type="submit" class="btn btn-primary" name="bestellingAfronden" value="bestellingaronden">
+                </form>
+
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" name="winkelmandLeegmaken" value="winkelmand leegmaken">
                 </form>
                 <?php
+                if(isset($_POST['winkelmandLeegmaken']))
+                {
+                    unset($_SESSION['bestelling']);
+                }
 
                 $rows = array('StockItemID','StockItemName, UnitPrice');
                 $where = array(
@@ -173,12 +181,11 @@ session_start();
 
                     if(isset($_GET['addToCart'])) {
                         $bestellingen = array();
-                        $filtered = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                        $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
 
                     }
                     if(isset($_POST['bestellingAfronden']))
                     {
-                        $_SESSION['bestelling'][] = $filtered;
                         print_r($_SESSION['bestelling']);
                     }
 

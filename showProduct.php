@@ -105,12 +105,21 @@ session_start();
             {
                 echo "X</br>";
             }
-
-            echo 'Rating: &#11088 &#11088 &#11088 &#9734 &#9734';
-
-
-
-            $x++;
+            $calculation = $selectedProduct[$x][1] / 5;
+            $x = 0;
+             echo 'Rating:';
+            while($x < number_format($calculation , 0))
+            {
+                if($x <= 4)
+                {
+                    echo '&#11088';
+                    $x++;
+                }
+                else
+                {
+                    $x++;
+                }
+            }
         }
         ?>
 </div>
