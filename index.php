@@ -62,13 +62,6 @@ require_once "includes/init.php";
                 <div class="col-lg-3">
                     <h1 class="my-4">World Wide Importers</h1>
                     <?php
-                    $hen = false;
-                    $hun = true;
-
-                    if ($hun || $hen == false) {
-                        echo "Het is hen";
-                    }
-
                     $rows = array('StockGroupID, StockGroupName');
                     $where = array(
                         array(
