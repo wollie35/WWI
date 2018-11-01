@@ -16,6 +16,9 @@ require_once "includes/init.php";
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <link href="css/main.css" rel="stylesheet">
+
+
         <!-- Custom styles for this template -->
         <link href="css/shop-item.css" rel="stylesheet">
 
@@ -144,7 +147,17 @@ require_once "includes/init.php";
                     var_dump($search);
                 }
                 ?>
-
+                <?php
+                $x = 0;
+                while ($x < 12)
+                {
+                    ?>
+                    <div class="square">
+                        test
+                    </div>
+                    <?php
+                }
+                ?>
 
                 <div class="card mt-4">
 
