@@ -151,7 +151,7 @@ require_once "includes/init.php";
                     <div class="card-body">
                         <h3 class="card-title">Product Name</h3>
                         <h4>$24.99</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                        <p class="card-text">Bacon ipsum dolor amet biltong cupim leberkas filet mignon swine pig sausage turducken. Chicken sirloin brisket short ribs sausage, prosciutto rump. Doner bacon pancetta sirloin t-bone drumstick. Bacon short loin buffalo prosciutto. Pig strip steak shank, shoulder chicken pork chop fatback tail hamburger pastrami kevin!</p>
                         <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                         4.0 stars
                     </div>
