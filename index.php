@@ -182,6 +182,7 @@ session_start();
                     if(isset($_GET['addToCart'])) {
                         $bestellingen = array();
                         $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                        unset($_GET['addToCart']);
 
                     }
                     if(isset($_POST['bestellingAfronden']))
