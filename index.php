@@ -107,7 +107,6 @@ require_once "includes/init.php";
 
                         //Select userEmail,userPassword, userRights, userFName, userLName
                         $category = (new QueryBuilding('stockitems S', $where, $rows))->selectRows()->fetchall();
-                        var_dump($category);
                     }
                     ?>
                 </div>
@@ -120,6 +119,46 @@ require_once "includes/init.php";
                     <input type="submit" name="submit">
                 </form>
 
+                <?php
+                $rows = array('StockItemID','StockItemName, UnitPrice');
+                $where = array(
+                    array(
+                        'name' => '',
+                        'symbol' => '',
+                        'value' => '',
+                        'jointype' => '',
+                        'jointable' => '',
+                        'joinvalue1' => '',
+                        'joinvalue2' => '',
+                        'syntax' => '',
+                    )
+                );
+
+                $allProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
+
+                $y = 0;
+                ?>
+                <form method="get">
+                <?php
+                while ($y < count($allProducts))
+                {
+                    ?>
+                <div class="square"><?=$allProducts[$y][1]?>
+                        <?='</br>' . $allProducts[$y][2]?>
+                        <input type="submit" value="Voeg toe aan winkelwagen" name="addToCart<?=$allProducts[$y][0]?>"  />
+                    </div>
+                    <?php
+                    $y++;
+                }
+                ?>
+                </form>
+                <?php
+
+                if(isset($_GET['addToCart']))
+
+
+                if(isset($_POST['']))
+                ?>
                 <?php
                 if (isset($_POST['submit'])) {
                     $rows = array('StockItemName');
@@ -144,20 +183,9 @@ require_once "includes/init.php";
                     } else {
                         echo "Er zijn" . $countSeach . " resultaten gevonden!";
                     }
-                    var_dump($search);
                 }
                 ?>
-                <?php
-                $x = 0;
-                while ($x < 12)
-                {
-                    ?>
-                    <div class="square">
-                        test
-                    </div>
-                    <?php
-                }
-                ?>
+
 
                 <div class="card mt-4">
 
