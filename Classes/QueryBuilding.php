@@ -82,7 +82,7 @@ class QueryBuilding extends DBconn
             }
 
             if ($limit != 0) {
-                $query .= ' LIMIT ' . $limit['page'] . ',' . $limit['results'] . '';
+                $query .= ' LIMIT ' . $limit['page'] . ',' . $max . '';
             }
         }
         //prepare querystmt

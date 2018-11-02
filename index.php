@@ -106,7 +106,7 @@ if(!isset($_GET['pageNumber']))
                             array(
                                 'name' => 'SISG.StockGroupID',
                                 'symbol' => '=',
-                                'value' => $_GET['categoryId'],
+                                'value' => FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING),
                                 'jointype' => 'INNER',
                                 'jointable' => 'stockitemstockgroups SISG',
                                 'joinvalue1' => 'S.stockitemID',
@@ -124,44 +124,27 @@ if(!isset($_GET['pageNumber']))
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                <form method="post">
-                    <input type="search" name="zoeken" placeholder="Zoek je product!">
-                    <input type="submit" name="submitZoeken">
-                </form>
-
                 <?php
-                if (isset($_POST['submitZoeken'])) {
-                    $rows = array('StockItemName');
-                    $where = array(
-                        array(
-                            'name' => 'StockItemName',
-                            'symbol' => 'LIKE',
-                            'value' => '%' . $_POST['zoeken'] . '%',
-                            'jointype' => '',
-                            'jointable' => '',
-                            'joinvalue1' => '',
-                            'joinvalue2' => '',
-                            'syntax' => '',
-                        )
-                    );
-
-                    //Select userEmail,userPassword, userRights, userFName, userLName
-                    $search = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-                    $countSeach = count($search) - 1;
-                    if (empty($search)) {
-                        echo "Er zijn geen resultaten gevonden!";
-                    } else {
-                        echo "Er zijn " . $countSeach . " resultaten gevonden!";
-                    }
+                if(isset($_POST['submitZoeken']))
+                {
+                    $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                    $_GET['pageNumber'] = 1;
                 }
                 ?>
-
                 <form method="post">
-                    <input type="submit" class="btn btn-primary" name="bestellingAfronden" value="bestellingaronden">
+                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+                    <input type="submit" name="submitZoeken">
+                </form>
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" name="zoekenLeegmaken" value="Filter Leegmaken">
                 </form>
 
                 <form method="post">
-                    <input type="submit" class="btn btn-danger" name="winkelmandLeegmaken" value="winkelmand leegmaken">
+                    <input type="submit" class="btn btn-primary" name="bestellingAfronden" value="Bestelling Afronden">
+                </form>
+
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" name="winkelmandLeegmaken" value="Winkelamnd Leegmaken">
                 </form>
                 <?php
                 if(isset($_POST['winkelmandLeegmaken']))
@@ -169,41 +152,88 @@ if(!isset($_GET['pageNumber']))
                     unset($_SESSION['bestelling']);
                 }
 
+                if(isset($_POST['winkelmandLeegmaken']))
+                {
+                    unset($_SESSION['zoekOpdracht']);
+                }
+
                 $rows = array('count(*)');
                 $countAllProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
 
-                $x = 48;
+                $x = 15;
                 $aantalPaginas = $countAllProducts[0][0] / $x;
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
+
                 $rows = array('StockItemID','StockItemName, UnitPrice');
-                $where = array(
+                if(!isset($_SESSION['zoekOpdracht']))
+                {
+                    $where = array(
                     array(
                         'name' => 'StockItemID',
                         'symbol' => '>',
-                        'value' => ($_GET['pageNumber'] - 1) * 48,
+                        'value' => ($_GET['pageNumber'] - 1) * 15,
                         'jointype' => '',
                         'jointable' => '',
                         'joinvalue1' => '',
                         'joinvalue2' => '',
                         'syntax' => 'AND',
                     ),
-
                     array(
                         'name' => 'StockItemID',
                         'symbol' => '<=',
-                        'value' => $_GET['pageNumber'] * 48,
+                        'value' => $_GET['pageNumber'] * 15,
                         'jointype' => '',
                         'jointable' => '',
                         'joinvalue1' => '',
                         'joinvalue2' => '',
                         'syntax' => '',
-                    ),
+                        )
+                    );
+                }
+                else
+                    {
+                        $where = array(
+                            array(
+                                'name' => 'StockItemName',
+                                'symbol' => 'LIKE',
+                                'value' => '%' .$_SESSION['zoekOpdracht'] . '%',
+                                'jointype' => '',
+                                'jointable' => '',
+                                'joinvalue1' => '',
+                                'joinvalue2' => '',
+                                'syntax' => '',
+                            )
+                        );
+                    }
 
+
+                $allProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows(array('page'=> ($_GET['pageNumber'] - 1) * 15), '15')->fetchall();
+                if (empty(count($allProducts))) {
+                    echo "Er zijn geen resultaten gevonden!";
+                } else {
+                    echo "Er zijn " . count($allProducts) . " resultaten gevonden op deze pagina!";
+                }
+
+                $rows = array('count(*)');
+                $where = array(
+                    array(
+                        'name' => 'StockItemName',
+                        'symbol' => 'LIKE',
+                        'value' => '%' .$_SESSION['zoekOpdracht'] . '%',
+                        'jointype' => '',
+                        'jointable' => '',
+                        'joinvalue1' => '',
+                        'joinvalue2' => '',
+                        'syntax' => '',
+                    )
                 );
+                $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
+                $x = 15;
+                $aantalPaginas = $countAllSearchProducts[0][0] / $x;
+                $aantalPaginas = (number_format($aantalPaginas, 0));
 
-                $allProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-                 $y = 0;
+                $y = 0;
                 ?>
                 <form method="get">
                 <?php
@@ -254,7 +284,15 @@ if(!isset($_GET['pageNumber']))
                         $ap = 1;
                         while($ap < $aantalPaginas + 1)
                         {
-                           echo '<li class="page-item"><a  class="page-link" href="?pageNumber='.$ap.'">' .$ap. '</a></li>';
+                            if(filter_input(INPUT_GET, 'pageNumber', FILTER_SANITIZE_STRING) == $ap)
+                            {
+                                $color = 'red';
+                            }
+                            else
+                            {
+                                $color = '';
+                            }
+                           echo '<li class="page-item"><a class="page-link" style="color: '.$color.'" href="?pageNumber='.$ap.'">' .$ap. '</a></li>';
                             $ap++;
                         }
                         ?>
