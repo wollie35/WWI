@@ -6,6 +6,10 @@ if(empty($_GET['categoryId']))
 {
     $_GET['categoryId'] = 0;
 }
+if(!isset($_GET['pageNumber']))
+{
+    $_GET['pageNumber'] = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,8 +126,35 @@ if(empty($_GET['categoryId']))
             <div class="col-lg-9">
                 <form method="post">
                     <input type="search" name="zoeken" placeholder="Zoek je product!">
-                    <input type="submit" name="submit">
+                    <input type="submit" name="submitZoeken">
                 </form>
+
+                <?php
+                if (isset($_POST['submitZoeken'])) {
+                    $rows = array('StockItemName');
+                    $where = array(
+                        array(
+                            'name' => 'StockItemName',
+                            'symbol' => 'LIKE',
+                            'value' => '%' . $_POST['zoeken'] . '%',
+                            'jointype' => '',
+                            'jointable' => '',
+                            'joinvalue1' => '',
+                            'joinvalue2' => '',
+                            'syntax' => '',
+                        )
+                    );
+
+                    //Select userEmail,userPassword, userRights, userFName, userLName
+                    $search = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
+                    $countSeach = count($search) - 1;
+                    if (empty($search)) {
+                        echo "Er zijn geen resultaten gevonden!";
+                    } else {
+                        echo "Er zijn " . $countSeach . " resultaten gevonden!";
+                    }
+                }
+                ?>
 
                 <form method="post">
                     <input type="submit" class="btn btn-primary" name="bestellingAfronden" value="bestellingaronden">
@@ -138,25 +169,41 @@ if(empty($_GET['categoryId']))
                     unset($_SESSION['bestelling']);
                 }
 
+                $rows = array('count(*)');
+                $countAllProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
+
+                $x = 48;
+                $aantalPaginas = $countAllProducts[0][0] / $x;
+                $aantalPaginas = (number_format($aantalPaginas, 0));
+
                 $rows = array('StockItemID','StockItemName, UnitPrice');
-//                $where = array(
-//                    array(
-//                        'name' => 'StockItemID',
-//                        'symbol' => '>=',
-//                        'value' => 0,
-//                        'jointype' => '',
-//                        'jointable' => '',
-//                        'joinvalue1' => '',
-//                        'joinvalue2' => '',
-//                        'syntax' => 'AND',
-//                    )
-//                );
+                $where = array(
+                    array(
+                        'name' => 'StockItemID',
+                        'symbol' => '>',
+                        'value' => ($_GET['pageNumber'] - 1) * 48,
+                        'jointype' => '',
+                        'jointable' => '',
+                        'joinvalue1' => '',
+                        'joinvalue2' => '',
+                        'syntax' => 'AND',
+                    ),
 
+                    array(
+                        'name' => 'StockItemID',
+                        'symbol' => '<=',
+                        'value' => $_GET['pageNumber'] * 48,
+                        'jointype' => '',
+                        'jointable' => '',
+                        'joinvalue1' => '',
+                        'joinvalue2' => '',
+                        'syntax' => '',
+                    ),
 
-                $allProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
+                );
 
-
-                $y = 0;
+                $allProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
+                 $y = 0;
                 ?>
                 <form method="get">
                 <?php
@@ -201,34 +248,19 @@ if(empty($_GET['categoryId']))
 
                 ?>
                 </form>
-                <?php
-                ?>
-                <?php
-                if (isset($_POST['submit'])) {
-                    $rows = array('StockItemName');
-                    $where = array(
-                        array(
-                            'name' => 'StockItemName',
-                            'symbol' => 'LIKE',
-                            'value' => '%' . $_POST['zoeken'] . '%',
-                            'jointype' => '',
-                            'jointable' => '',
-                            'joinvalue1' => '',
-                            'joinvalue2' => '',
-                            'syntax' => '',
-                        )
-                    );
-
-                    //Select userEmail,userPassword, userRights, userFName, userLName
-                    $search = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-                    $countSeach = count($search) - 1;
-                    if (empty($search)) {
-                        echo "Er zijn geen resultaten gevonden!";
-                    } else {
-                        echo "Er zijn" . $countSeach . " resultaten gevonden!";
-                    }
-                }
-                ?>
+                <nav>
+                    <div class="pagination">
+                        <?php
+                        $ap = 1;
+                        while($ap < $aantalPaginas + 1)
+                        {
+                           echo '<li class="page-item"><a  class="page-link" href="?pageNumber='.$ap.'">' .$ap. '</a></li>';
+                            $ap++;
+                        }
+                        ?>
+                    </div>
+                    </ul>
+                </nav>
                 <!-- /.card -->
 
             </div>
