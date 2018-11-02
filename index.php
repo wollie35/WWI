@@ -1,6 +1,11 @@
 <?php
 require_once "includes/init.php";
 session_start();
+
+if(empty($_GET['categoryId']))
+{
+    $_GET['categoryId'] = 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +96,7 @@ session_start();
                         $x++;
                     }
 
-                    if ($_GET['categoryId']) {
+                    if ($_GET['categoryId'] != 0) {
                         $rows = array('S.StockItemName');
                         $where = array(
                             array(
@@ -134,20 +139,22 @@ session_start();
                 }
 
                 $rows = array('StockItemID','StockItemName, UnitPrice');
-                $where = array(
-                    array(
-                        'name' => '',
-                        'symbol' => '',
-                        'value' => '',
-                        'jointype' => '',
-                        'jointable' => '',
-                        'joinvalue1' => '',
-                        'joinvalue2' => '',
-                        'syntax' => '',
-                    )
-                );
+//                $where = array(
+//                    array(
+//                        'name' => 'StockItemID',
+//                        'symbol' => '>=',
+//                        'value' => 0,
+//                        'jointype' => '',
+//                        'jointable' => '',
+//                        'joinvalue1' => '',
+//                        'joinvalue2' => '',
+//                        'syntax' => 'AND',
+//                    )
+//                );
+
 
                 $allProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
+
 
                 $y = 0;
                 ?>
