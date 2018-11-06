@@ -87,7 +87,7 @@ class QueryBuilding extends DBconn
         }
         //prepare querystmt
         $stmt = $this->getConn()->prepare($query);
-        //var_dump($query);
+        var_dump($query);
 
         $stmt->execute();
         //stuur de geëxecute stmt uit.

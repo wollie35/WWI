@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
 <?php
-#cart.php - A simple shopping cart with add to cart, and remove links
-//---------------------------
-//initialize sessions
-//Define the products and cost
-$amounts = array("19.99", "10.99", "2.99");
-
 include "includes/Functions.php";
 $opTeHalenProducten = array(5, 6, 7,7,8,9,10);
 $DB = DBconnectie();
@@ -32,12 +17,18 @@ foreach ($opTeHalenProducten as $item)
     }
 }
 
-var_dump($query);
 $stmt = $DB->prepare($query);
-
 $stmt->execute();
-
 $result = $stmt->fetchAll();
+
+session_start();
+$y = 0;
+while($y < count($_SESSION['bestelling']))
+{
+    echo $_SESSION['bestelling'][$y];
+    $y++;
+}
+
 $x = 0;
 
 echo '<table border="1px solid black">';
@@ -57,5 +48,3 @@ while ($x < count($result))
 }
 echo '</table>';
 ?>
-</body>
-</html>

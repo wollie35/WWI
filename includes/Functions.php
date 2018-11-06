@@ -5,7 +5,6 @@
  * Date: 6-11-2018
  * Time: 11:44
  */
-
 Function DBconnectie()
 {
     try {
