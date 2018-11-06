@@ -131,6 +131,9 @@ if(!isset($_SESSION['zoekOpdracht']))
                 <form method="post">
                     <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
                     <input type="submit" name="submitZoeken">
+
+                    <input type="submit" name="bestellingAfronden" value="Bestelling afronden">
+                    <input type="submit" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
                 </form>
                 <?php
                 if(isset($_POST['submitZoeken']))
@@ -143,9 +146,10 @@ if(!isset($_SESSION['zoekOpdracht']))
                 <?php
                 if(isset($_GET['addToCart']) != '')
                 {
-                        $_GET['addToCart'] = '';
                         $bestellingen = array();
+                        $_GET['addToCart'] = '';
                         $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+
                 }
 
 
