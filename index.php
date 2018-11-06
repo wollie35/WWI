@@ -10,6 +10,10 @@ if(!isset($_GET['pageNumber']))
 {
     $_GET['pageNumber'] = 1;
 }
+if(!isset($_SESSION['zoekOpdracht']))
+{
+    $_SESSION['zoekOpdracht'] = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,6 +128,10 @@ if(!isset($_GET['pageNumber']))
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
+                <form method="post">
+                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+                    <input type="submit" name="submitZoeken">
+                </form>
                 <?php
                 if(isset($_POST['submitZoeken']))
                 {
@@ -131,30 +139,19 @@ if(!isset($_GET['pageNumber']))
                     $_GET['pageNumber'] = 1;
                 }
                 ?>
-                <form method="post">
-                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
-                    <input type="submit" name="submitZoeken">
-                </form>
-                <form method="post">
-                    <input type="submit" class="btn btn-danger" name="zoekenLeegmaken" value="Filter Leegmaken">
-                </form>
 
-                <form method="post">
-                    <input type="submit" class="btn btn-primary" name="bestellingAfronden" value="Bestelling Afronden">
-                </form>
-
-                <form method="post">
-                    <input type="submit" class="btn btn-danger" name="winkelmandLeegmaken" value="Winkelamnd Leegmaken">
-                </form>
                 <?php
+                if(isset($_GET['addToCart']) != '')
+                {
+                        $_GET['addToCart'] = '';
+                        $bestellingen = array();
+                        $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                }
+
+
                 if(isset($_POST['winkelmandLeegmaken']))
                 {
                     unset($_SESSION['bestelling']);
-                }
-
-                if(isset($_POST['winkelmandLeegmaken']))
-                {
-                    unset($_SESSION['zoekOpdracht']);
                 }
 
                 $rows = array('count(*)');
@@ -242,13 +239,13 @@ if(!isset($_GET['pageNumber']))
                     ?>
                 <div class="square">
                     <a target="_blank" href="showProduct.php?productID=<?=$allProducts[$y][0]?>">
-                     <img src="includes/img/usb_launcher.PNG"  alt="Banana-Gun" style="width: 150px">
+                     <img src="includes/img/fishcycle.PNG"  alt="Fishman" class="fishman" ">
                     </a>
 
-                    <?='</br>' . $allProducts[$y][2]?>
-                    <?php if (strlen($allProducts[$y][1]) > 40)
+                    <?="&euro; " . $allProducts[$y][2] . "</br>"?>
+                    <?php if (strlen($allProducts[$y][1]) > 10)
                     {
-                        echo substr($allProducts[$y][1], 0, 40);
+                        echo substr($allProducts[$y][1], 0, 10);
                         echo '...';
                     }
                     else
@@ -261,14 +258,6 @@ if(!isset($_GET['pageNumber']))
                     <?php
                     $y++;
                 }
-
-
-                    if(isset($_GET['addToCart'])) {
-                        $bestellingen = array();
-                        $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
-                        unset($_GET['addToCart']);
-
-                    }
                     if(isset($_POST['bestellingAfronden']))
                     {
                         print_r($_SESSION['bestelling']);

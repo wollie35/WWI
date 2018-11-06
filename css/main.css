@@ -8,5 +8,10 @@
     height: 3%;
     width: 30%;
     border: 1px solid black;
-    display: inline-block;
+    display: inline-grid;
+}
+
+.fishman
+{
+    width: 100%;
 }

@@ -89,14 +89,40 @@ session_start();
         $selectedProduct = (new QueryBuilding('stockitems ST', $where, $rows))->selectRows()->fetchall();
 
         $x = 0;
-
+        echo '<table border="1px">';
         while ($x < count($selectedProduct))
         {
-            echo 'Naam: ' . $selectedProduct[$x][0] . "</br>";
-            echo 'Prijs: '. $selectedProduct[$x][1].  "</br>";
-            echo 'Leverancier: ' . $selectedProduct[$x][2] .  "</br>";
-            echo 'Verwachte levertijd: ' . $selectedProduct[$x][3] . " Dagen" . "</br>";
-            echo 'Opmerking van leverancier: ';
+
+            ?>
+            <tr>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>Leverancier</th>
+                <th>Verwachte levertijd</th>
+                <th>Opmerking leverancier</th>
+            </tr>
+            <tr>
+                <td><?=$selectedProduct[$x][0]?></td>
+                <td><?=$selectedProduct[$x][1]?></td>
+                <td><?=$selectedProduct[$x][2]?></td>
+                <td><?=$selectedProduct[$x][3]?></td>
+            </tr>
+            <?PHP
+            echo '</br><th> Naam: ';
+            echo '<tr>';
+            echo '<td>' . $selectedProduct[$x][0] . '</td>';
+            echo '</th>';
+            echo '<th> Prijs: ';
+            echo '<td>' . $selectedProduct[$x][1] . '</td>';
+            echo '</th>';
+            echo '<th> Leverancier: ';
+            echo '<td>' . $selectedProduct[$x][2] . '</td>';
+            echo '</th>';
+            echo '<th> Verwachte levertijd: ';
+            echo '<td>' . $selectedProduct[$x][3] . '</td>';
+            echo '</th>';
+            echo '</tr>';
+            echo '<th>Opmerking van leverancier: </th>';
             if(!empty($selectedProduct[$x][4]))
             {
                 echo $selectedProduct[$x][4] . "</br>";
@@ -121,6 +147,7 @@ session_start();
                 }
             }
         }
+        echo '</table>';
         ?>
 </div>
 <!-- /.container -->
