@@ -36,7 +36,9 @@ if(!isset($_SESSION['zoekOpdracht']))
                 <div class="col-lg-3">
                     <h1 class="my-4">Wide World Importers</h1>
                     <?php
+                    //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
+                    //Where statement voor query
                     $where = array(
                         array(
                             'name' => '',
@@ -50,10 +52,10 @@ if(!isset($_SESSION['zoekOpdracht']))
                         )
                     );
 
-                    //Select userEmail,userPassword, userRights, userFName, userLName
                     $user = (new QueryBuilding('stockgroups', '', $rows))->selectRows()->fetchall();
                     $x = 0;
                     echo '<div class="list-group">';
+                    //Show categories
                     while ($x < count($user)) {
                         ?>
                         <a href="?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
@@ -61,6 +63,7 @@ if(!isset($_SESSION['zoekOpdracht']))
                         $x++;
                     }
 
+                    //In progress
                     if ($_GET['categoryId'] != 0) {
                         $rows = array('S.StockItemName');
                         $where = array(
@@ -76,7 +79,6 @@ if(!isset($_SESSION['zoekOpdracht']))
                             )
                         );
 
-                        //Select userEmail,userPassword, userRights, userFName, userLName
                         $category = (new QueryBuilding('stockitems S', $where, $rows))->selectRows()->fetchall();
                     }
                     ?>
@@ -85,19 +87,22 @@ if(!isset($_SESSION['zoekOpdracht']))
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                <form method="post">
-                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
-                    <input type="submit" name="submitZoeken">
 
-                    <input type="submit" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
-                </form>
                 <?php
                 if(isset($_POST['submitZoeken']))
                 {
                     $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
                     $_GET['pageNumber'] = 1;
                 }
+
                 ?>
+                <!-- Zoekknop -->
+                <form method="post">
+                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+                    <input type="submit" name="submitZoeken">
+
+                    <input type="submit" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
+                </form>
 
                 <?php
 
@@ -106,15 +111,19 @@ if(!isset($_SESSION['zoekOpdracht']))
                     unset($_SESSION['bestelling']);
                 }
 
+                //SELECTEER alle waardes voor tellen paginas
                 $rows = array('count(*)');
                 $countAllProducts = (new QueryBuilding('stockitems', '', $rows))->selectRows()->fetchall();
 
                 $x = 15;
+                //Deel totaal aan objecten / 15
                 $aantalPaginas = $countAllProducts[0][0] / $x;
+                //Rond getal af op 0 decimalen (1.4 wordt 1)
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
 
                 $rows = array('StockItemID','StockItemName, UnitPrice');
+                //Controleer of zoekopdracht gevuld
                 if(!isset($_SESSION['zoekOpdracht']))
                 {
                     $where = array(
@@ -179,6 +188,7 @@ if(!isset($_SESSION['zoekOpdracht']))
                 );
                 $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
                 $x = 15;
+                //Overruled aantalpaginas tellingen
                 $aantalPaginas = $countAllSearchProducts[0][0] / $x;
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
@@ -187,6 +197,7 @@ if(!isset($_SESSION['zoekOpdracht']))
                 <form method="get">
                 <?php
                 while ($y < count($allProducts))
+                    //Allproducts (0 = ID, 1 = naam, 2 = Prijs)
                 {
                     ?>
                 <div class="square">
@@ -195,6 +206,7 @@ if(!isset($_SESSION['zoekOpdracht']))
                     </a>
 
                     <?="&euro; " . $allProducts[$y][2] . "</br>"?>
+                    <!-- Limiteerd strlengte voor passen vakjes-->
                     <?php if (strlen($allProducts[$y][1]) > 10)
                     {
                         echo substr($allProducts[$y][1], 0, 10);
@@ -215,11 +227,13 @@ if(!isset($_SESSION['zoekOpdracht']))
 
                 if(isset($_GET['addToCart']) != '')
                 {
+                    //Klik op toevoegen aan winkelmand (id)
                     $_GET['addToCart'] = '';
                     $bestellingen = array();
                     $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                    //gebruiken voor tellen winkelmand
                     $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
-                    print_r($_SESSION['bestelling']);
+                    //print_r($_SESSION['bestelling']);
                 }
 
 

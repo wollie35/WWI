@@ -46,10 +46,9 @@ session_start();
         $selectedProduct = (new QueryBuilding('stockitems ST', $where, $rows))->selectRows()->fetchall();
 
         $x = 0;
-        echo '<table border="1px">';
+        echo '<table class="table">';
         while ($x < count($selectedProduct))
         {
-
             ?>
             <tr>
                 <th>Naam</th>
@@ -57,52 +56,37 @@ session_start();
                 <th>Leverancier</th>
                 <th>Verwachte levertijd</th>
                 <th>Opmerking leverancier</th>
+                <th>Rating</th>
             </tr>
             <tr>
                 <td><?=$selectedProduct[$x][0]?></td>
                 <td><?=$selectedProduct[$x][1]?></td>
                 <td><?=$selectedProduct[$x][2]?></td>
                 <td><?=$selectedProduct[$x][3]?></td>
+                <td><?php
+                    if (!empty($selectedProduct[$x][4])) {
+                        echo $selectedProduct[$x][4] . "</br>";
+                    } else {
+                        echo "X</br>";
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    $calculation = $selectedProduct[$x][1] / 5;
+                    $x = 0;
+                    while ($x < number_format($calculation, 0)) {
+                        if ($x <= 4) {
+                            echo '&#11088';
+                            $x++;
+                        } else {
+                            $x++;
+                        }
+                    } ?></td>
             </tr>
             <?PHP
-            echo '</br><th> Naam: ';
-            echo '<tr>';
-            echo '<td>' . $selectedProduct[$x][0] . '</td>';
-            echo '</th>';
-            echo '<th> Prijs: ';
-            echo '<td>' . $selectedProduct[$x][1] . '</td>';
-            echo '</th>';
-            echo '<th> Leverancier: ';
-            echo '<td>' . $selectedProduct[$x][2] . '</td>';
-            echo '</th>';
-            echo '<th> Verwachte levertijd: ';
-            echo '<td>' . $selectedProduct[$x][3] . '</td>';
-            echo '</th>';
-            echo '</tr>';
-            echo '<th>Opmerking van leverancier: </th>';
-            if(!empty($selectedProduct[$x][4]))
-            {
-                echo $selectedProduct[$x][4] . "</br>";
-            }
-            else
-            {
-                echo "X</br>";
-            }
-            $calculation = $selectedProduct[$x][1] / 5;
-            $x = 0;
-             echo 'Rating:';
-            while($x < number_format($calculation , 0))
-            {
-                if($x <= 4)
-                {
-                    echo '&#11088';
-                    $x++;
-                }
-                else
-                {
-                    $x++;
-                }
-            }
+
+
         }
         echo '</table>';
         ?>
