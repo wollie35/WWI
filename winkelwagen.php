@@ -30,9 +30,8 @@ session_start();
 //Controleert of er iets in de winkelmand staat
 if(!empty($_SESSION['bestelling'])) {
 
-    if(!isset($_GET['number']))
-    {
-        $_GET['number']  = 1;
+    if (!isset($_GET['number'])) {
+        $_GET['number'] = 1;
     }
 
     $opTeHalenProducten = array();
@@ -53,12 +52,11 @@ if(!empty($_SESSION['bestelling'])) {
     $query = 'SELECT StockitemId, Stockitemname, Unitprice FROM stockitems WHERE StockitemID = ';
 
     //Doorloopt de array en controlleert of OR nodig is of niet
-    foreach ($opTeHalenProducten as $item)
-    {
+    foreach ($opTeHalenProducten as $item) {
         if ($item == max($opTeHalenProducten)) {
             $query .= $item;
         } else {
-            $query .=  $item . ' OR StockitemID = ';
+            $query .= $item . ' OR StockitemID = ';
         }
     }
     //Prepare and execute
@@ -66,12 +64,26 @@ if(!empty($_SESSION['bestelling'])) {
     $stmt->execute();
     $result = $stmt->fetchAll();
 
+    $array = array();
+
     //Telt hoeveelheid resultaten
     $x = 0;
+
+    while ($x < count($result))
+    {
+        $array[] = array("ID" => $result[$x][0], "Name" => $result[$x][1], "Price" => $result[$x][2], "Quantity" => 1);
+        $x++;
+    }
+
+    $y = 0;
     echo '<table class="table">';
-    while ($x < count($result)) {
-        $arr = array($result[$x][0] => 1
-        );
+    while($y < count($array))
+    {
+        if(isset($_GET[$array[$y]["ID"]]))
+        {
+            $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
+            $_SESSION['array'] = $array;
+        }
         ?>
         <tr>
             <th>Nummer</th>
@@ -81,18 +93,18 @@ if(!empty($_SESSION['bestelling'])) {
             <th>Totaalprijs</th>
         </tr>
         <?php //Leest de arrays uit en haalt de data deruit?>
-        <td><?= $result[$x][0] ?></td>
-        <td><?= $result[$x][1] ?></td>
-        <td><?= $result[$x][2] ?></td>
-        <form method="get" action="">
-            <td><?= '<input type="number" name="number" id="number" value="1">' ?></td>
+        <td><?=$array[$y]["ID"] ?></td>
+        <td><?=$array[$y]["Name"] ?></td>
+        <td><?=$array[$y]["Price"] ?></td>
+        <form method="GET" action="winkelwagen.php">
+        <td><?= '<input type="text" value="'.$_SESSION['array'][$y]["Quantity"].'" name="'.$array[$y]["ID"].'">' ?></td>
         </form>
-        <td><?= '' ?></td>
         <?php
-        $x++;
+            $y++;
     }
+
     echo '</table>';
-    }
+}
 else
 {
     echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
