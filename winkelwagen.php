@@ -49,7 +49,6 @@ if(!empty($_SESSION['bestelling'])) {
             $query .= $item . ' OR StockitemID = ';
         }
     }
-    var_dump($query);
     $stmt = $DB->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll();

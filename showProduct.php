@@ -1,6 +1,6 @@
 <?php
 require_once "includes/init.php";
-require_once "includes/Functions.php.php";
+require_once "includes/Functions.php";
 session_start();
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ session_start();
     <!-- /.col-lg-3 -->
 
     <div class="col-lg-9">
-        <img src="includes/img/usb_launcher.PNG"  alt="Banana-Gun" style="width: 150px">
+        <img src="includes/img/fishcycle.PNG"  alt="Banana-Gun" style="width: 150px">
         <?php
 
         $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
