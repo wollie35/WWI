@@ -97,7 +97,8 @@ if(!empty($_SESSION['bestelling'])) {
         <td><?=$array[$y]["Name"] ?></td>
         <td><?=$array[$y]["Price"] ?></td>
         <form method="GET" action="winkelwagen.php">
-        <td><?= '<input type="text" value="'.$_SESSION['array'][$y]["Quantity"].'" name="'.$array[$y]["ID"].'">' ?></td>
+<!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
+        <td><?= '<input type="text" value="1" name="'.$array[$y]["ID"].'">' ?></td>
         </form>
         <?php
             $y++;

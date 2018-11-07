@@ -24,6 +24,19 @@ if(!isset($_SESSION['zoekOpdracht']))
     </head>
 
     <body>
+    <?php
+    //product toevoegen bestelling
+    if(isset($_GET['addToCart']) != '')
+    {
+        //Klik op toevoegen aan winkelmand (id)
+        $_GET['addToCart'] = '';
+        $bestellingen = array();
+        $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+        //gebruiken voor tellen winkelmand
+        $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
+        //print_r($_SESSION['bestelling']);
+    }
+    ?>
 
         <!-- Navigation -->
         <?= displayNavBar() ?>
@@ -222,20 +235,6 @@ if(!isset($_SESSION['zoekOpdracht']))
                     <?php
                     $y++;
                 }
-
-
-
-                if(isset($_GET['addToCart']) != '')
-                {
-                    //Klik op toevoegen aan winkelmand (id)
-                    $_GET['addToCart'] = '';
-                    $bestellingen = array();
-                    $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
-                    //gebruiken voor tellen winkelmand
-                    $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
-                    //print_r($_SESSION['bestelling']);
-                }
-
 
                 ?>
                 </form>
