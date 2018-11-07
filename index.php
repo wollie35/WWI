@@ -1,5 +1,6 @@
 <?php
 require_once "includes/init.php";
+require_once "includes/Functions.php";
 session_start();
 
 if(empty($_GET['categoryId']))
@@ -19,57 +20,13 @@ if(!isset($_SESSION['zoekOpdracht']))
 <html lang="en">
 
     <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Wide World Importers</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <link href="css/main.css" rel="stylesheet">
-
-
-        <!-- Custom styles for this template -->
-        <link href="css/shop-item.css" rel="stylesheet">
-
+    <?= displayHeader();?>
     </head>
 
     <body>
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">Word Wide Importers</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inloggen</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?= displayNavBar() ?>
 
         <!-- Page Content -->
         <div class="container">
@@ -261,6 +218,7 @@ if(!isset($_SESSION['zoekOpdracht']))
                     $_GET['addToCart'] = '';
                     $bestellingen = array();
                     $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                    $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
                     print_r($_SESSION['bestelling']);
                 }
 
