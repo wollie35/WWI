@@ -15,6 +15,10 @@ if(!isset($_SESSION['zoekOpdracht']))
 {
     $_SESSION['zoekOpdracht'] = '';
 }
+if(!isset($_SESSION['countBestelling']))
+{
+    $_SESSION['countBestelling'] = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +29,12 @@ if(!isset($_SESSION['zoekOpdracht']))
 
     <body>
     <?php
+
+    if(isset($_POST['winkelmandLeegmaken']))
+    {
+        unset($_SESSION['bestelling']);
+        $_SESSION['countBestelling'] = 0;
+    }
     //product toevoegen bestelling
     if(isset($_GET['addToCart']) != '')
     {
@@ -119,10 +129,6 @@ if(!isset($_SESSION['zoekOpdracht']))
 
                 <?php
 
-                if(isset($_POST['winkelmandLeegmaken']))
-                {
-                    unset($_SESSION['bestelling']);
-                }
 
                 //SELECTEER alle waardes voor tellen paginas
                 $rows = array('count(*)');
