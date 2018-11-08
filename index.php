@@ -29,12 +29,6 @@ if(!isset($_SESSION['countBestelling']))
 
     <body>
     <?php
-
-    if(isset($_POST['winkelmandLeegmaken']))
-    {
-        unset($_SESSION['bestelling']);
-        $_SESSION['countBestelling'] = 0;
-    }
     //product toevoegen bestelling
     if(isset($_GET['addToCart']) != '')
     {
@@ -45,6 +39,12 @@ if(!isset($_SESSION['countBestelling']))
         //gebruiken voor tellen winkelmand
         $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
         //print_r($_SESSION['bestelling']);
+    }
+
+    if(isset($_POST['winkelmandLeegmaken']))
+    {
+        unset($_SESSION['bestelling']);
+        $_SESSION['countBestelling'] = 0;
     }
     ?>
 
