@@ -54,8 +54,8 @@ if(!isset($_SESSION['countBestelling']))
                 <div class="col-lg-3">
                     <h1 class="my-4">Wide World Importers</h1>
                     <!-- Zoekknop -->
-                    <form method="post">
-                        <input type="search" onkeypress="handle(event)" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+                    <form method="post" id="my-form">
+                        <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
 <!--                        <input type="submit" class="btn btn-info" name="submitZoeken">-->
                     </form>
                 </br>
@@ -111,17 +111,18 @@ if(!isset($_SESSION['countBestelling']))
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-
                 <script>
-                    function handle(e){
-                        if(e.keyCode === 13){
-                            e.preventDefault(); // Ensure it is only this code that rusn
+                    $('#my_form').keydown(function() {
+                        var key = e.which;
+                        if (key == 13) {
+// As ASCII code for ENTER key is "13"
                             <?php
-                                $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
-                                $_GET['pageNumber'] = 1;
+                            $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                            $_GET['pageNumber'] = 1;
                             ?>
+                            $('#my_form').submit(); // Submit form code
                         }
-                    }
+                    });
                 </script>
                 <?php
 
