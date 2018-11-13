@@ -41,11 +41,6 @@ if(!isset($_SESSION['countBestelling']))
         //print_r($_SESSION['bestelling']);
     }
 
-    if(isset($_POST['winkelmandLeegmaken']))
-    {
-        unset($_SESSION['bestelling']);
-        $_SESSION['countBestelling'] = 0;
-    }
     ?>
 
         <!-- Navigation -->
@@ -58,6 +53,12 @@ if(!isset($_SESSION['countBestelling']))
 
                 <div class="col-lg-3">
                     <h1 class="my-4">Wide World Importers</h1>
+                    <!-- Zoekknop -->
+                    <form method="post">
+                        <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+<!--                        <input type="submit" class="btn btn-info" name="submitZoeken">-->
+                    </form>
+                </br>
                     <?php
                     //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
@@ -119,13 +120,6 @@ if(!isset($_SESSION['countBestelling']))
                 }
 
                 ?>
-                <!-- Zoekknop -->
-                <form method="post">
-                    <input type="search" name="zoeken" placeholder="Zoek je product!" value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
-                    <input type="submit" name="submitZoeken">
-
-                    <input type="submit" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
-                </form>
 
                 <?php
 

@@ -11,7 +11,14 @@ session_start();
 </head>
 
 <body>
+<?php
 
+if(isset($_POST['winkelmandLeegmaken']))
+{
+    unset($_SESSION['bestelling']);
+    $_SESSION['countBestelling'] = 0;
+}
+?>
 <!-- Navigation -->
 <?=displayNavBar();?>
 
@@ -74,16 +81,16 @@ if(!empty($_SESSION['bestelling'])) {
         $array[] = array("ID" => $result[$x][0], "Name" => $result[$x][1], "Price" => $result[$x][2], "Quantity" => 1);
         $x++;
     }
+    ?>
+    <form method="post">
+    <input type="submit" class="float-right  btn btn-info" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
+    </form>
+    <?php
 
     $y = 0;
     echo '<table class="table">';
     while($y < count($array))
     {
-        if(isset($_GET[$array[$y]["ID"]]))
-        {
-            $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
-            $_SESSION['array'] = $array;
-        }
         ?>
         <tr>
             <th>Nummer</th>
@@ -98,17 +105,24 @@ if(!empty($_SESSION['bestelling'])) {
         <td><?=$array[$y]["Price"] ?></td>
         <form method="GET" action="winkelwagen.php">
 <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
-        <td><?= '<input type="text" value="1" name="'.$array[$y]["ID"].'">' ?></td>
+            <td><?= '<input type="number"  value="'.$array[$y]["Quantity"].'" name="'.$array[$y]["ID"].'">' ?></td>
         </form>
         <?php
-            $y++;
+        if(isset($_GET[$array[$y]["ID"]]))
+        {
+            $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
+        }
+        $y++;
     }
+
+    var_dump($array);
 
     echo '</table>';
 }
 else
 {
     echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
+    echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
 }
 ?>
 
