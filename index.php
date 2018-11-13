@@ -56,10 +56,16 @@ if(!isset($_SESSION['countBestelling']))
                     <!-- Zoekknop -->
                     <form method="post" id="my-form">
                         <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
-<!--                        <input type="submit" class="btn btn-info" name="submitZoeken">-->
+                        <input type="submit" class="btn btn-info" name="submitZoeken">
                     </form>
                 </br>
                     <?php
+
+                    if(isset($_POST['submitZoeken']))
+                    {
+                        $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                        $_GET['pageNumber'] = 1;
+                    }
                     //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
                     //Where statement voor query
@@ -111,23 +117,6 @@ if(!isset($_SESSION['countBestelling']))
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                <script>
-                    $('#my_form').keydown(function() {
-                        var key = e.which;
-                        if (key == 13) {
-// As ASCII code for ENTER key is "13"
-                            <?php
-                            $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
-                            $_GET['pageNumber'] = 1;
-                            ?>
-                            $('#my_form').submit(); // Submit form code
-                        }
-                    });
-                </script>
-                <?php
-
-                ?>
-
                 <?php
 
 
