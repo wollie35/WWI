@@ -105,40 +105,40 @@ session_start();
                             <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
                             <td><?= '<input type="number"  value="' . $array[$y]["Quantity"] . '" name="' . $array[$y]["ID"] . '">' ?></td>
                         </form>
-                        <form method="GET" action="betaal.php">
-                            <input type="Submit" value="betaal">
+                        <a href="betaal.php"> test</a>
 
-                            <?php
-                            if (isset($_GET[$array[$y]["ID"]])) {
-                                $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
-                            }
-                            $y++;
+
+                        <?php
+                        if (isset($_GET[$array[$y]["ID"]])) {
+                            $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
                         }
-
-                        var_dump($array);
-
-                        echo '</table>';
-                    } else {
-                        echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
-                        echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
+                        $y++;
                     }
-                    ?>
 
-                    </div>
-                    <!-- /.container -->
+                    var_dump($array);
 
-                    <!-- Footer -->
-                    <footer class="py-5 bg-dark">
-                        <div class="container">
-                            <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
-                        </div>
-                        <!-- /.container -->
-                    </footer>
+                    echo '</table>';
+                } else {
+                    echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
+                    echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
+                }
+                ?>
 
-                    <!-- Bootstrap core JavaScript -->
-                    <script src="vendor/jquery/jquery.min.js"></script>
-                    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            </div>
+            <!-- /.container -->
 
-                    </body>
+            <!-- Footer -->
+            <footer class="py-5 bg-dark">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
+                </div>
+                <!-- /.container -->
+            </footer>
 
-                    </html>
+            <!-- Bootstrap core JavaScript -->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
+</html>
