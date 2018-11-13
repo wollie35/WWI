@@ -55,7 +55,7 @@ if(!isset($_SESSION['countBestelling']))
                     <h1 class="my-4">Wide World Importers</h1>
                     <!-- Zoekknop -->
                     <form method="post">
-                        <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
+                        <input type="search" onkeypress="handle(event)" class="form-control" name="zoeken"  placeholder="Search..." value='<?php if(isset($_SESSION['zoekOpdracht'])){echo $_SESSION['zoekOpdracht'];} ?>'>
 <!--                        <input type="submit" class="btn btn-info" name="submitZoeken">-->
                     </form>
                 </br>
@@ -112,12 +112,18 @@ if(!isset($_SESSION['countBestelling']))
 
             <div class="col-lg-9">
 
+                <script>
+                    function handle(e){
+                        if(e.keyCode === 13){
+                            e.preventDefault(); // Ensure it is only this code that rusn
+                            <?php
+                                $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                                $_GET['pageNumber'] = 1;
+                            ?>
+                        }
+                    }
+                </script>
                 <?php
-                if(isset($_POST['submitZoeken']))
-                {
-                    $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
-                    $_GET['pageNumber'] = 1;
-                }
 
                 ?>
 
