@@ -6,6 +6,6 @@
         <title></title>
     </head>
     <body>
-        <img src="Betaal.jpeg"
+        <img src="includes/img/Betaal.jpeg"
     </body>
 </html>

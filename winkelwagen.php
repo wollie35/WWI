@@ -107,9 +107,6 @@ session_start();
                             <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
                             <td><?= '<input type="number"  value="'.$_SESSION['array'][$y]["Quantity"].'" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
                         </form>
-<!--                        <form method="GET" action="betaal.php">-->
-<!--                            <input type="Submit" value="betaal">-->
-<!--                        </form>    -->
                             <?php
                             if (isset($_POST[$_SESSION['array'][$y]["ID"]]))
                             {
