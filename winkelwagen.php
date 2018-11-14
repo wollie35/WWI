@@ -122,7 +122,7 @@ session_start();
                     echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
                 }
                 ?>
-                <a class="btn bg-dark" href="bestellingPlaatsen.php"> test</a>
+                <a class="btn bg-dark   " href="bestellingPlaatsen.php"> Betaal</a>
             </div>
             <!-- /.container -->
 
