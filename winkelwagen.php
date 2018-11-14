@@ -117,12 +117,14 @@ session_start();
                     }
 
                     echo '</table>';
+
+                    print('<a class="btn bg-dark   " href="bestellingPlaatsen.php"> Betaal</a>');
                 } else {
                     echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
                     echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
                 }
                 ?>
-                <a class="btn bg-dark   " href="bestellingPlaatsen.php"> Betaal</a>
+
             </div>
             <!-- /.container -->
 
