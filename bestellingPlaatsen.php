@@ -103,10 +103,12 @@ session_start();
                         <div class="col-md-12"><strong>Bank:</strong></div>
                         <div class="col-md-12">
                             <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                <option value="5">ABN AMRO</option>
+                                <option value="5">ABN BRAMBO</option>
                                 <option value="6">ING</option>
                                 <option value="7">BUNQ</option>
                                 <option value="8">KNAB</option>
+                                <option value="8">RABO BANK</option>
+                                <option value="8">SNS BANK</option>
                             </select>
                         </div>
                     </div>
