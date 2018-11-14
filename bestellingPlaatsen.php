@@ -109,11 +109,11 @@ session_start();
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Rekeningnummer:</strong></div>
-                        <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="" /></div>
+                        <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="" required="required" /></div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Pas nummer:</strong></div>
-                        <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" /></div>
+                        <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" required="required" /></div>
                     </div>
 
 
