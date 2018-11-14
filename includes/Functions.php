@@ -1,5 +1,8 @@
 <?php
-
+if(!isset($_SESSION['countBestelling']))
+{
+    $_SESSION['countBestelling'] = 0;
+}
 /**
  * Created by PhpStorm.
  * User: Wolter van Donk
