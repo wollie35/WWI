@@ -133,7 +133,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                      <form method="get" action="Geplaatst.php">  
+                                      <form method="get" action="includes/bestellingAfgerond.php"> 
                                     <button type="submit" class="btn btn-primary btn-submit-fix">Bevestig betaling</button>
                                 </div>
                             </div>
