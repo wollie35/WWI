@@ -66,12 +66,7 @@ session_start();
                             <input type="text" name="address" class="form-control" value="" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12"><strong>City:</strong></div>
-                        <div class="col-md-12">
-                            <input type="text" name="city" class="form-control" value="" />
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <div class="col-md-12"><strong>Postcode:</strong></div>
                         <div class="col-md-12">
