@@ -128,7 +128,9 @@ if (!isset($_SESSION['countBestelling'])) {
 
                 $rows = array('StockItemID', 'StockItemName, UnitPrice');
                 //Controleer of zoekopdracht gevuld
-                if (!isset($_SESSION['zoekOpdracht'])) {
+
+                if (!isset($_SESSION['zoekOpdracht']) && $_GET['categoryId'] == 0)
+                {
                     $where = array(
                         array(
                             'name' => 'StockItemID',
@@ -151,7 +153,8 @@ if (!isset($_SESSION['countBestelling'])) {
                             'syntax' => '',
                         )
                     );
-                } else {
+                }
+                else {
                     $where = array(
                         array(
                             'name' => 'StockItemName',
@@ -161,6 +164,22 @@ if (!isset($_SESSION['countBestelling'])) {
                             'jointable' => '',
                             'joinvalue1' => '',
                             'joinvalue2' => '',
+                            'syntax' => '',
+                        )
+                    );
+                }
+
+                if($_GET['categoryId'] != 0)
+                {
+                    $where = array(
+                        array(
+                            'name' => 'SISG.StockGroupID',
+                            'symbol' => '=',
+                            'value' => FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING),
+                            'jointype' => 'INNER',
+                            'jointable' => 'stockitemstockgroups SISG',
+                            'joinvalue1' => 'S.stockitemID',
+                            'joinvalue2' => 'SISG.StockItemID',
                             'syntax' => '',
                         )
                     );
