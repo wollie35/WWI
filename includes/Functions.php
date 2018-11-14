@@ -1,8 +1,4 @@
 <?php
-if(!isset($_SESSION['countBestelling']))
-{
-    $_SESSION['countBestelling'] = 0;
-}
 /**
  * Created by PhpStorm.
  * User: Wolter van Donk
@@ -41,6 +37,10 @@ Function displayHeader() {
 }
 
 Function displayNavBar() {
+    if(!isset($_SESSION['countBestelling']))
+    {
+        $_SESSION['countBestelling'] = 0;
+    }
     $result = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.php">Wide World Importers</a>
