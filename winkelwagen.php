@@ -89,6 +89,11 @@ session_start();
                     $y = 0;
                     echo '<table class="table">';
                     while ($y < count($array)) {
+                        if (isset($_POST[$_SESSION['array'][$y]["ID"]])) {
+                            $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
+                            $_SESSION['array'][$y]['Quantity'] = $quantity;
+                            var_dump($_SESSION['array']);
+                        }
                         ?>
                         <tr>
                             <th>Nummer</th>
@@ -108,11 +113,6 @@ session_start();
                             <td><?= '<input type="number"  value="' . $_SESSION['array'][$y]["Quantity"] . '" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
                         </form>
                         <?php
-                        if (isset($_POST[$_SESSION['array'][$y]["ID"]])) {
-                            $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
-                            $_SESSION['array'][$y]['Quantity'] = $quantity;
-                            var_dump($_SESSION['array']);
-                        }
                         $y++;
                     }
 
