@@ -78,6 +78,8 @@ session_start();
                         $array[] = array("ID" => $result[$x][0], "Name" => $result[$x][1], "Price" => $result[$x][2], "Quantity" => 1);
                         $x++;
                     }
+
+                    $_SESSION['array'] = $array;
                     ?>
                     <form method="post">
                         <input type="submit" class="float-right  btn btn-info" name="winkelmandLeegmaken" value="Winkelmand leegmaken">
@@ -98,24 +100,25 @@ session_start();
 
                         </tr>
                         <?php //Leest de arrays uit en haalt de data deruit ?>
-                        <td><?= $array[$y]["ID"] ?></td>
-                        <td><?= $array[$y]["Name"] ?></td>
-                        <td><?= $array[$y]["Price"] ?></td>
-                        <form method="GET" action="winkelwagen.php">
+                        <td><?= $_SESSION['array'][$y]["ID"] ?></td>
+                        <td><?= $_SESSION['array'][$y]["Name"] ?></td>
+                        <td><?= $_SESSION['array'][$y]["Price"] ?></td>
+                        <form method="POST" action="winkelwagen.php">
                             <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
-                            <td><?= '<input type="number"  value="' . $array[$y]["Quantity"] . '" name="' . $array[$y]["ID"] . '">' ?></td>
+                            <td><?= '<input type="number"  value="'.$_SESSION['array'][$y]["Quantity"].'" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
                         </form>
-                        <form method="GET" action="betaal.php">
-                            <input type="Submit" value="betaal">
-
+<!--                        <form method="GET" action="betaal.php">-->
+<!--                            <input type="Submit" value="betaal">-->
+<!--                        </form>    -->
                             <?php
-                            if (isset($_GET[$array[$y]["ID"]])) {
-                                $array[$y]["Quantity"] = $_GET[$array[$y]["ID"]];
+                            if (isset($_POST[$_SESSION['array'][$y]["ID"]]))
+                            {
+                                $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
+                                $_SESSION['array'][$y]['Quantity'] = $quantity;
+                                var_dump($_SESSION['array']);
                             }
                             $y++;
                         }
-
-                        var_dump($array);
 
                         echo '</table>';
                     } else {
