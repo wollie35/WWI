@@ -105,26 +105,24 @@ session_start();
                         <td><?= $_SESSION['array'][$y]["Price"] ?></td>
                         <form method="POST" action="winkelwagen.php">
                             <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
-                            <td><?= '<input type="number"  value="'.$_SESSION['array'][$y]["Quantity"].'" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
+                            <td><?= '<input type="number"  value="' . $_SESSION['array'][$y]["Quantity"] . '" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
                         </form>
-                            <?php
-                            if (isset($_POST[$_SESSION['array'][$y]["ID"]]))
-                            {
-                                $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
-                                $_SESSION['array'][$y]['Quantity'] = $quantity;
-                                var_dump($_SESSION['array']);
-                            }
-                            $y++;
+                        <?php
+                        if (isset($_POST[$_SESSION['array'][$y]["ID"]])) {
+                            $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
+                            $_SESSION['array'][$y]['Quantity'] = $quantity;
+                            var_dump($_SESSION['array']);
                         }
+                        $y++;
+                    }
 
-                        echo '</table>';
-                    } else {
-                        echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
-                        echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
-//                        <a href="betaal.php"> test</a>
+                    echo '</table>';
+                } else {
+                    echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
+                    echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
                 }
                 ?>
-
+                <a href="bestellingPlaatsen.php"> test</a>
             </div>
             <!-- /.container -->
 
