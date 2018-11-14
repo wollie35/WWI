@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Wolter van Donk
  * Date: 6-11-2018
  * Time: 11:44
  */
-Function DBconnectie()
-{
+Function DBconnectie() {
     try {
         $dbh = new PDO('mysql:host=127.0.0.1;dbname=wideworldimporters', 'root', '');
         return $dbh;
@@ -15,8 +15,7 @@ Function DBconnectie()
     }
 }
 
-Function displayHeader()
-{
+Function displayHeader() {
     $result = '
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,8 +37,7 @@ Function displayHeader()
     return $result;
 }
 
-Function displayNavBar()
-{
+Function displayNavBar() {
     $result = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.php">Wide World Importers</a>
@@ -55,7 +53,7 @@ Function displayNavBar()
                     <a class="nav-link" href="login.php">Inloggen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="winkelwagen.php">Winkelmand (' .$_SESSION['countBestelling'].')</a>
+                    <a class="nav-link" href="winkelwagen.php">Winkelmand (' . $_SESSION['countBestelling'] . ')</a>
                 </li>
             </ul>
         </div>
