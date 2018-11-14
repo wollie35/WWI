@@ -34,6 +34,7 @@ session_start();
             <div class="panel panel-info">
 
                 <div class="panel-body">
+
                     <div class="form-group">
                         <div class="col-md-12">
                             <h4>Verzendadres</h4>
@@ -48,7 +49,9 @@ session_start();
                     <div class="form-group">
                         <div class="col-md-6 col-xs-12">
                             <strong>Voornaam:</strong>
-                            <input type="text" name="first_name" class="form-control" value="" />
+                            <form method="post">
+                                <input type="text" name="first_name" class="form-control" />
+                            </form>
                         </div>
                         <div class="span1"></div>
                         <div class="col-md-6 col-xs-12">
@@ -56,6 +59,7 @@ session_start();
                             <input type="text" name="last_name" class="form-control" value="" />
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-12"><strong>Adres:</strong></div>
                         <div class="col-md-12">
@@ -117,21 +121,22 @@ session_start();
 
 
                 </div>
+
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <form method="get" action="includes/bestellingAfronden.php">
                             <button type="submit" class="btn btn-primary btn-submit-fix">Bevestig betaling</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <!--CREDIT CART PAYMENT END-->
         </div>
 
-    </form>
-</div>
-<div class="row cart-footer">
+    </div>
+    <div class="row cart-footer">
 
-</div>
+    </div>
 </div>
 </div>
 <!-- /.container -->
