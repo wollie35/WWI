@@ -119,7 +119,7 @@ class QueryBuilding extends DBconn
         }
         echo "</br>";
 
-//        var_dump($query);
+        var_dump($query);
         //Execute de stmt
         $stmt->execute();
         return $stmt;

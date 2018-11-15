@@ -26,13 +26,25 @@ if (!isset($_SESSION['countBestelling'])) {
     <body>
         <?php
         //product toevoegen bestelling
-        if (isset($_GET['addToCart']) != '') {
+        if (isset($_GET['addToCart']) != '')
+        {
+            if(!isset($_SESSION['bestelling']))
+            {
+                $_SESSION['bestelling'] = array();
+            }
             //Klik op toevoegen aan winkelmand (id)
+            if(in_array($_GET['addToCart'], $_SESSION['bestelling']))
+            {
+                echo "nope";
+            }
+            else
+            {
             $_GET['addToCart'] = '';
-            $bestellingen = array();
-            $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
-            //gebruiken voor tellen winkelmand
-            $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
+                $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
+                //gebruiken voor tellen winkelmand
+                $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
+            }
+
             //print_r($_SESSION['bestelling']);
         }
         ?>
@@ -47,11 +59,11 @@ if (!isset($_SESSION['countBestelling'])) {
 
                 <div class="col-lg-3">
                     <!--<h1 class="my-4">Wide World Importers</h1>-->
-                    <img src="includes/img/logo.png" alt="logo" style="width: 90%;>
-                         <!-- Zoekknop -->
-                         <form method="post" id="my-form">
+                    <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
+                    <form method="post">
                          <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php
-                         if (isset($_SESSION['zoekOpdracht'])) {
+                         if (isset($_SESSION['zoekOpdracht']))
+                         {
                              echo $_SESSION['zoekOpdracht'];
                          }
                          ?>'>
@@ -59,10 +71,26 @@ if (!isset($_SESSION['countBestelling'])) {
                     </form>
                     </br>
                     <?php
-                    if (isset($_POST['submitZoeken'])) {
+                    if (isset($_POST['submitZoeken']))
+                    {
                         $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
                         $_GET['pageNumber'] = 1;
                     }
+
+                    ?>
+                    <script>
+                        function handle(e){
+                            if(e.keyCode === 13){
+                                e.preventDefault(); // Ensure it is only this code that rusn
+                                <?php
+                                $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                                $_GET['pageNumber'] = 1;
+                                ?>
+                            }
+                        }
+                    </script>
+                    <?php
+
 //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
 //Where statement voor query
@@ -125,11 +153,10 @@ if (!isset($_SESSION['countBestelling'])) {
                 //Rond getal af op 0 decimalen (1.4 wordt 1)
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
-
                 $rows = array('StockItemID', 'StockItemName, UnitPrice');
                 //Controleer of zoekopdracht gevuld
 
-                if (!isset($_SESSION['zoekOpdracht']) && $_GET['categoryId'] == 0)
+                if (!isset($_SESSION['zoekOpdracht']))
                 {
                     $where = array(
                         array(
@@ -168,23 +195,6 @@ if (!isset($_SESSION['countBestelling'])) {
                         )
                     );
                 }
-
-                if($_GET['categoryId'] != 0)
-                {
-                    $where = array(
-                        array(
-                            'name' => 'SISG.StockGroupID',
-                            'symbol' => '=',
-                            'value' => FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING),
-                            'jointype' => 'INNER',
-                            'jointable' => 'stockitemstockgroups SISG',
-                            'joinvalue1' => 'S.stockitemID',
-                            'joinvalue2' => 'SISG.StockItemID',
-                            'syntax' => '',
-                        )
-                    );
-                }
-
 
                 $allProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows(array('page' => ($_GET['pageNumber'] - 1) * 15), '15')->fetchall();
                 if (empty(count($allProducts))) {
