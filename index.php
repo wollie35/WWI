@@ -25,7 +25,6 @@ if (!isset($_SESSION['countBestelling'])) {
     </head>
 
     <body>
-
         <?php
         //product toevoegen bestelling
         if (isset($_GET['addToCart']) != '')
@@ -37,7 +36,7 @@ if (!isset($_SESSION['countBestelling'])) {
             //Klik op toevoegen aan winkelmand (id)
             if(in_array($_GET['addToCart'], $_SESSION['bestelling']))
             {
-                displayModal('Informatie', 'Dit product staat al in de winkelwagen, U kan de hoeveelheid van het product in de winkelwagen aanpassen', 'Sluit');
+                echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
             }
             else
             {
@@ -78,21 +77,6 @@ if (!isset($_SESSION['countBestelling'])) {
                         $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
                         $_GET['pageNumber'] = 1;
                     }
-
-                    ?>
-                    <script>
-                        function handle(e){
-                            if(e.keyCode === 13){
-                                e.preventDefault(); // Ensure it is only this code that rusn
-                                <?php
-                                $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
-                                $_GET['pageNumber'] = 1;
-                                ?>
-                            }
-                        }
-                    </script>
-                    <?php
-
 //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
 //Where statement voor query
@@ -163,18 +147,8 @@ if (!isset($_SESSION['countBestelling'])) {
                     $where = array(
                         array(
                             'name' => 'StockItemID',
-                            'symbol' => '>',
-                            'value' => ($_GET['pageNumber'] - 1) * 15,
-                            'jointype' => '',
-                            'jointable' => '',
-                            'joinvalue1' => '',
-                            'joinvalue2' => '',
-                            'syntax' => 'AND',
-                        ),
-                        array(
-                            'name' => 'StockItemID',
-                            'symbol' => '<=',
-                            'value' => $_GET['pageNumber'] * 15,
+                            'symbol' => '!=',
+                            'value' => 0,
                             'jointype' => '',
                             'jointable' => '',
                             'joinvalue1' => '',
@@ -219,6 +193,8 @@ if (!isset($_SESSION['countBestelling'])) {
                     )
                 );
                 $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
+               var_dump($countAllProducts);
+                var_dump($countAllSearchProducts);
                 $x = 15;
                 //Overruled aantalpaginas tellingen
                 $aantalPaginas = $countAllSearchProducts[0][0] / $x;
