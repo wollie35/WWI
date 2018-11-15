@@ -33,6 +33,10 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
 
+                <?php
+                print (filter_input(INPUT_POST, "voornaam", FILTER_SANITIZE_STRING));
+                ?>
+
                 Uw betaling is gelukt en de bestelling is geplaats. <br>
                 Bedankt voor het winkelen bij Wide World Importers!
 
