@@ -1,6 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,38 +88,39 @@ session_start();
                     </form>
                     <?php
                     $y = 0;
-                    echo '<table class="table">';
-                    while ($y < count($array)) {
-                        if (isset($_POST[$_SESSION['array'][$y]["ID"]])) {
-                            $quantity = $_POST[$_SESSION['array'][$y]["ID"]];
-                            $_SESSION['array'][$y]['Quantity'] = $quantity;
-                            var_dump($_SESSION['array']);
-                        }
-                        ?>
-                        <tr>
+                    echo '<form action="#" method="post" id="cart">';
+                     echo '<table class="table">';
+                    ?>
                             <th>Nummer</th>
                             <th>Naam</th>
-                            <th>Prijs</th>
                             <th>Hoeveelheid</th>
-                            <th>Totaalprijs</th>
+                            <th>Prijs</th>
+                <?php
 
-
-                        </tr>
-                        <?php //Leest de arrays uit en haalt de data deruit ?>
-                        <td><?= $_SESSION['array'][$y]["ID"] ?></td>
-                        <td><?= $_SESSION['array'][$y]["Name"] ?></td>
-                        <td><?= $_SESSION['array'][$y]["Price"] ?></td>
-                        <form method="POST" action="winkelwagen.php">
-                            <!--            Value voor na demo: value="'.$_SESSION['array'][$y]["Quantity"].'"-->
-                            <td><?= '<input type="number"  value="' . $_SESSION['array'][$y]["Quantity"] . '" name="' . $_SESSION['array'][$y]["ID"] . '">' ?></td>
-                        </form>
-                        <?php
-                        $y++;
+                while ($y < count($array)) {
+                ?>
+                <tr>
+                    <?php //Leest de arrays uit en haalt de data deruit ?>
+                    <tr>
+                        <td><?= $array[$y]["ID"] ?></td>
+                        <td><?= $array[$y]["Name"] ?></td>
+                        <td><input type="number" value="1" name="qty" class="qty" /></td>
+                        <td><?= $array[$y]["Price"] . " EURO" ?></td>
+                    </tr>
+                    <?php
+                    $y++;
                     }
-
-                    echo '</table>';
-
-                    print('<a class="btn bg-dark   " href="bestellingPlaatsen.php"> Betaal</a>');
+                ?>
+                    </table>
+                    <div>
+                        <button class="btn btn-success col-md-3" style="color: white;" id="calc">Totaal prijs berekenen</button>
+                        <span id="subtotal"></span>
+                    </div>
+                    <br>
+                    <a class="btn bg-success col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
+                </form>
+                <?php
+                    javaScriptCart();
                 } else {
                     echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
                     echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
