@@ -14,6 +14,28 @@ Function DBconnectie() {
     }
 }
 
+Function displayModal($title, $text, $close)
+{
+    ?>
+    <script>
+        $(function () {
+            $("#myModal").modal();//if you want you can have a timeout to hide the window after x seconds
+        });
+    </script>
+    <?php print  '
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">' . $title . '</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>' . $text . '</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">' . $close . '</button>
+                    </div>
+                </div>';
+}
 Function displayHeader() {
     $result = '
         <meta charset="utf-8">

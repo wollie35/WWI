@@ -16,6 +16,7 @@ if (!isset($_SESSION['countBestelling'])) {
     $_SESSION['countBestelling'] = '';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +25,7 @@ if (!isset($_SESSION['countBestelling'])) {
     </head>
 
     <body>
+
         <?php
         //product toevoegen bestelling
         if (isset($_GET['addToCart']) != '')
@@ -35,7 +37,7 @@ if (!isset($_SESSION['countBestelling'])) {
             //Klik op toevoegen aan winkelmand (id)
             if(in_array($_GET['addToCart'], $_SESSION['bestelling']))
             {
-                echo "nope";
+                displayModal('Informatie', 'Dit product staat al in de winkelwagen, U kan de hoeveelheid van het product in de winkelwagen aanpassen', 'Sluit');
             }
             else
             {
@@ -237,8 +239,8 @@ if (!isset($_SESSION['countBestelling'])) {
                             <?= "&euro; " . $allProducts[$y][2] . "</br>" ?>
                             <!-- Limiteerd strlengte voor passen vakjes-->
                             <?php
-                            if (strlen($allProducts[$y][1]) > 10) {
-                                echo substr($allProducts[$y][1], 0, 10);
+                            if (strlen($allProducts[$y][1]) > 30) {
+                                echo substr($allProducts[$y][1], 0, 30);
                                 echo '...';
                             } else {
                                 echo $allProducts[$y][1];
