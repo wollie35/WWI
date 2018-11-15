@@ -33,11 +33,24 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
 
-                <?php
+
+                Beste <?php
                 print (filter_input(INPUT_POST, "voornaam", FILTER_SANITIZE_STRING));
+                print (" ");
+                print (filter_input(INPUT_POST, "achternaam", FILTER_SANITIZE_STRING));
+                ?>
+                uw betaling is gelukt en de bestelling is geplaats.
+                <br>
+                Uw bestelling wordt geleverd op: <?php
+                print ("<br>");
+                print (filter_input(INPUT_POST, "address", FILTER_SANITIZE_STRING));
+                print ("<br>");
+                print (filter_input(INPUT_POST, "postcode", FILTER_SANITIZE_STRING));
+                print ("<br>");
+                print (filter_input(INPUT_POST, "woonplaats", FILTER_SANITIZE_STRING));
                 ?>
 
-                Uw betaling is gelukt en de bestelling is geplaats. <br>
+                <br>
                 Bedankt voor het winkelen bij Wide World Importers!
 
             </div>
