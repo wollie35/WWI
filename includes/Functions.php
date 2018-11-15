@@ -27,6 +27,7 @@ Function displayHeader() {
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="css/main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
     <!-- Custom styles for this template -->
@@ -63,4 +64,77 @@ Function displayNavBar() {
     </div>
 </nav>';
     return $result;
+}
+
+function JavaScriptCart()
+{
+    print'<script>
+                    var Cart = {
+
+                        $cart: $( "#cart" ),
+                        $qtyFields: $( "input.qty" ),
+                        $triggerBtn: $( "#calc" ),
+                        $subTotalEl : $( "#subtotal" ),
+
+                        calculate: function() {
+                            var total = 0;
+
+                            this.$qtyFields.each(function() {
+
+                                var $field = $( this );
+                                var amount = $field.parent().next().text();
+                                var amountR = amount.replace( /\s+/g, "" ).replace( /EURO/, "" );
+                                var n1 = Number( $field.val() );
+                                var n2 = Number( amountR );
+
+                                var sum = n1 * n2;
+
+
+                                total += sum;
+
+                            });
+
+                            var totalStr = total.toFixed( 2 );
+                            var tot = totalStr + " EURO";
+
+
+
+                            return tot;
+                        },
+                        trigger: function() {
+                            var self = this;
+
+                            this.$triggerBtn.on( "click", function( e ) {
+
+                                e.preventDefault();
+
+                                var subtotal = self.calculate();
+
+                                self.$subTotalEl.text( subtotal );
+                            });
+
+
+                        },
+                        init: function() {
+
+                            this.trigger();
+
+                            this.$triggerBtn.trigger( "click" );
+
+                            this.$cart.submit(function( e ) {
+
+                                e.preventDefault();
+
+                            });
+
+
+                        }
+
+                    };
+
+                    $(function() {
+
+                        Cart.init();
+                    });
+                </script>';
 }

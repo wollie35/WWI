@@ -37,7 +37,7 @@ session_start();
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <h4>Verzendadres</h4>
+                            <h4>Verzendadres:</h4>
                         </div>
                     </div>
                     <div class="form-group">
