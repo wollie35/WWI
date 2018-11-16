@@ -33,6 +33,7 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
                 <form method="POST" action="bestellingAfronden.php">
+                    <br>
                     <span id="Betalen" class="badge badge-pill badge-secondary">Gegevens: </span>
                     Voornaam:<input type="text" name="voornaam" class="form-control">
                     <br>
