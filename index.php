@@ -213,7 +213,7 @@ if (!isset($_SESSION['countBestelling'])) {
                                 echo $allProducts[$y][1];
                             }
                             ?>
-                            <input type="submit"  name="addToCart" dirname="" value="<?= $allProducts[$y][0] ?>"  />
+                            <input type="submit"  name="addToCart" dirname="" value="<?= $allProducts[$y][0] ?>" class="btn btn-info"  />
                         </div>
                         <?php
                         $y++;
