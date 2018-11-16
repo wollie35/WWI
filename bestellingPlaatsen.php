@@ -1,8 +1,6 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
-unset($_SESSION["bestelling"]);
-unset($_SESSION["countBestelling"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
