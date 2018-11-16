@@ -59,7 +59,16 @@ session_start();
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <a href="localhost/wwi/wwi/wachtwoordVergeten.php" tabindex="5" class="forgot-password">Wachtwoord vergeten?</a>
+                                                <a href="wachtwoordVergeten.php" tabindex="5" class="forgot-password">Wachtwoord vergeten?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                Heb je nog geen account? Registreer dan <a href="register.php" tabindex="5" class="forgot-password">hier</a>
                                             </div>
                                         </div>
                                     </div>
