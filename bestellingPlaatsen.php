@@ -63,11 +63,12 @@ session_start();
                     <br>
                     Pasnummer:<input type="text" name="pasnummer" class="form-control" value="">
                     <br>
-                    <input type="submit" value="Bestelling afronden" class="btn btn-info float-right">
+                    <input type="submit" value="Bestelling afronden" class="btn btn-info ">
+
+
+                    <a href="index.php" class="btn btn-info float-right"> verder winkelen </a>
                 </form>
-                <form action="index.php">
-                    <input type="submit" value="Verder winkelen" class="btn btn-info">
-                </form>
+
             </div>
             <!-- /.container -->
 

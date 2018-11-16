@@ -184,8 +184,8 @@ if (!isset($_SESSION['countBestelling'])) {
                     )
                 );
                 $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-                var_dump($countAllProducts);
-                var_dump($countAllSearchProducts);
+                //var_dump($countAllProducts);
+                //var_dump($countAllSearchProducts);
                 $x = 15;
                 //Overruled aantalpaginas tellingen
                 $aantalPaginas = $countAllSearchProducts[0][0] / $x;
