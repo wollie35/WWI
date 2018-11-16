@@ -68,7 +68,7 @@ session_start();
 
                     <a href="index.php" class="btn btn-info float-right"> verder winkelen </a>
                 </form>
-
+                <br>
             </div>
             <!-- /.container -->
 
