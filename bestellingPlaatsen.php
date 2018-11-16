@@ -62,7 +62,7 @@ unset($_SESSION["countBestelling"]);
                     <br>
                     Pasnummer:<input type="text" name="pasnummer" class="form-control" value="">
                     <br>
-                    <input type="submit" value="Bestelling afronden">
+                    <input type="submit" value="Bestelling afronden" class="btn btn-success">
                 </form>
             </div>
             <!-- /.container -->

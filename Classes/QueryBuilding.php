@@ -1,17 +1,17 @@
 <?php
+
 include_once("Classes/DBconn.php");
 
 //Deze class voert het selecten, updaten en verwijderen van DB gegevens uit
-class QueryBuilding extends DBconn
-{
+class QueryBuilding extends DBconn {
+
     /** Properties */
     private $_tableName;
     private $_rows;
     private $_options;
 
     /** Constructor */
-    public function __construct($tableName, $options = "", $rows = "")
-    {
+    public function __construct($tableName, $options = "", $rows = "") {
         $this->openConnection();
         $this->setTableName($tableName);
         $this->setRows($rows);
@@ -19,9 +19,8 @@ class QueryBuilding extends DBconn
     }
 
     /** Methods */
-    /**Selecteer de benodigde rijen */
-    public function selectRows($limit = 0, $max = 0)
-    {
+    /*     * Selecteer de benodigde rijen */
+    public function selectRows($limit = 0, $max = 0) {
         //Geef de getters een eigen variable voor gebruikersgemak
         $tableName = $this->getTableName();
         $rows = $this->getRows();
@@ -40,14 +39,12 @@ class QueryBuilding extends DBconn
                 } else {
                     $query .= $key . ",  ";
                 }
-
             } else {
                 if ($max == 1) {
                     $query .= "max(" . $key . ") ";
                 } else {
                     $query .= $key . " ";
                 }
-
             }
         }
 
@@ -55,7 +52,7 @@ class QueryBuilding extends DBconn
         $query .= "FROM ";
         if ($options != "") {
             foreach ($options as $value) {
-                    if ($value['jointype'] != "") {
+                if ($value['jointype'] != "") {
                     $query .= '(';
                 }
             }
@@ -87,16 +84,16 @@ class QueryBuilding extends DBconn
         }
         //prepare querystmt
         $stmt = $this->getConn()->prepare($query);
-        var_dump($query);
+        //var_dump($query);
 
         $stmt->execute();
         //stuur de geëxecute stmt uit.
         return $stmt;
     }
 
-    /**Past de rij die jij wilt aanpassen aan in de database */
-    public function updateRows()
-    {
+    /*     * Past de rij die jij wilt aanpassen aan in de database */
+
+    public function updateRows() {
         //Geef de getters een eigen variable voor gebruikersgemak
         $tableName = $this->getTableName();
         $options = $this->getOptions();
@@ -126,8 +123,7 @@ class QueryBuilding extends DBconn
     }
 
     /** voegt een nieuwe rij toe in de database */
-    public function insertRows()
-    {
+    public function insertRows() {
         //Geef de getters een eigen variable voor gebruikersgemak
         $tableName = $this->getTableName();
         $options = $this->getOptions();
@@ -177,8 +173,7 @@ class QueryBuilding extends DBconn
     }
 
     /** verwijdert een of meerdere rijen uit de datbase */
-    public function deleteRows()
-    {
+    public function deleteRows() {
         //Geef de getters een eigen variable voor gebruikersgemak
         $tableName = $this->getTableName();
         $options = $this->getOptions();
@@ -206,28 +201,28 @@ class QueryBuilding extends DBconn
     }
 
     /** Getters en setters */
-    public function getTableName()
-    {
+    public function getTableName() {
         return $this->_tableName;
     }
-    public function setTableName($tableName)
-    {
+
+    public function setTableName($tableName) {
         $this->_tableName = $tableName;
     }
-    public function getRows()
-    {
+
+    public function getRows() {
         return $this->_rows;
     }
-    public function setRows($rows)
-    {
+
+    public function setRows($rows) {
         $this->_rows = $rows;
     }
-    public function getOptions()
-    {
+
+    public function getOptions() {
         return $this->_options;
     }
-    public function setOptions($options)
-    {
+
+    public function setOptions($options) {
         $this->_options = $options;
     }
+
 }
