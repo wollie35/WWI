@@ -21,3 +21,12 @@
     background-color: #4682B4;
 }
 
+#Betalen
+{
+  
+    height: 3%;
+    width: 100%;
+    background-color: #4682B4;
+    display: inline-grid;
+    font-size: 1.2em;
+}

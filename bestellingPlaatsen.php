@@ -33,7 +33,7 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
                 <form method="POST" action="bestellingAfronden.php">
-                    <HR>
+                    <span id="Betalen" class="badge badge-pill badge-secondary">Gegevens: </span>
                     Voornaam:<input type="text" name="voornaam" class="form-control">
                     <br>
                     Achternaam:<input type="text" name="achternaam" class="form-control">
@@ -48,10 +48,9 @@ unset($_SESSION["countBestelling"]);
                     <br>
                     Email:<input type="text" name="email" class="form-control" value="">
                     <br>
-                    <hr>
-
+                    <span id="Betalen" class="badge badge-pill badge-secondary">Betalen: </span>
                     <br>
-
+                    <br>
                     Bank:<select id="CreditCardType" name="CreditCardType" class="form-control">
                         <option value="5">ABN BRAMBO</option>
                         <option value="6">ING</option>
