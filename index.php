@@ -99,7 +99,7 @@ if (!isset($_SESSION['countBestelling'])) {
 //Show categories
                     while ($x < count($user)) {
                         ?>
-                        <a href="?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
+                        <a href="showProductCategory.php?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
                         <?php
                         $x++;
                     }
