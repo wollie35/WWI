@@ -28,47 +28,80 @@ session_start();
                 </div>
             </div>
             <!-- /.col-lg-3 -->
+            <div class="container" >
+                <div class="row centered-form" style="margin-left: 30%">
 
-            <div class="col-lg-9">
-                <form method="post">
-                    <input type="text" required name="username" placeholder="Gebruikersnaam"><br>
-                    <input type="email" required name="email" placeholder="E-mailadres"><br>
-                    <input type="password" required name="password" placeholder="Wachtwoord"><br>
-                    <input type="password" required name="passwordConfirmed" placeholder="Bevestig wachtwoord"><br>
-                    <input type="submit" name="register" value="test">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Registreren</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" required name="username" id="username" class="form-control input-sm" placeholder="Gebruikersnaam">
+                                        </div>
+                                    </div>
+                                </div>
 
-                </form>
-                <?php
-                if (isset($_POST["register"])) {
-                    if ($_POST["password"] == $_POST["passwordConfirmed"]) {
-                        $db = DBconnectie();
+                                <div class="form-group">
+                                    <input type="email" required name="email" id="email" class="form-control input-sm" placeholder="E-mailadres">
+                                </div>
 
-                        $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
-                        $sql = $db->prepare($query);
-                        $sql->bindParam(":username", $_POST["username"]);
-                        $sql->bindParam(":email", $_POST["email"]);
-                        $sql->bindParam(":password", $_POST["password"]);
-                        var_dump($query);
-                        $sql->execute();
-                    } else {
-                        print("De wachtwoorden komen niet overeen");
-                    }
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" required name="password" id="password" class="form-control input-sm" placeholder="Wachtwoord">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" required name="passwordConfirmed" id="passwordConfirmed" class="form-control input-sm" placeholder="Bevestig wachtwoord">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="submit" name="register" value="Registreren" class="btn btn-info btn-block">
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <?php
+            if (isset($_POST["register"])) {
+                if ($_POST["password"] == $_POST["passwordConfirmed"]) {
+                    $db = DBconnectie();
+
+                    $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
+                    $sql = $db->prepare($query);
+                    $sql->bindParam(":username", $_POST["username"]);
+                    $sql->bindParam(":email", $_POST["email"]);
+                    $sql->bindParam(":password", $_POST["password"]);
+                    var_dump($query);
+                    $sql->execute();
+                } else {
+                    print("De wachtwoorden komen niet overeen");
                 }
-                ?>
+            }
+            ?>
+        </div>
+        <!-- /.container -->
+
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
             </div>
             <!-- /.container -->
+        </footer>
 
-            <!-- Footer -->
-            <footer class="py-5 bg-dark">
-                <div class="container">
-                    <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
-                </div>
-                <!-- /.container -->
-            </footer>
-
-            <!-- Bootstrap core JavaScript -->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     </body>
 

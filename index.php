@@ -27,20 +27,15 @@ if (!isset($_SESSION['countBestelling'])) {
     <body>
         <?php
         //product toevoegen bestelling
-        if (isset($_GET['addToCart']) != '')
-        {
-            if(!isset($_SESSION['bestelling']))
-            {
+        if (isset($_GET['addToCart']) != '') {
+            if (!isset($_SESSION['bestelling'])) {
                 $_SESSION['bestelling'] = array();
             }
             //Klik op toevoegen aan winkelmand (id)
-            if(in_array($_GET['addToCart'], $_SESSION['bestelling']))
-            {
+            if (in_array($_GET['addToCart'], $_SESSION['bestelling'])) {
                 echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
-            }
-            else
-            {
-            $_GET['addToCart'] = '';
+            } else {
+                $_GET['addToCart'] = '';
                 $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
                 //gebruiken voor tellen winkelmand
                 $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
@@ -62,18 +57,16 @@ if (!isset($_SESSION['countBestelling'])) {
                     <!--<h1 class="my-4">Wide World Importers</h1>-->
                     <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
                     <form method="post">
-                         <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php
-                         if (isset($_SESSION['zoekOpdracht']))
-                         {
-                             echo $_SESSION['zoekOpdracht'];
-                         }
-                         ?>'>
-                    <input type="submit" class="btn btn-info" name="submitZoeken">
+                        <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php
+                        if (isset($_SESSION['zoekOpdracht'])) {
+                            echo $_SESSION['zoekOpdracht'];
+                        }
+                        ?>'>
+                        <input type="submit" class="btn btn-info" name="submitZoeken">
                     </form>
                     </br>
                     <?php
-                    if (isset($_POST['submitZoeken']))
-                    {
+                    if (isset($_POST['submitZoeken'])) {
                         $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
                         $_GET['pageNumber'] = 1;
                     }
@@ -142,8 +135,7 @@ if (!isset($_SESSION['countBestelling'])) {
                 $rows = array('StockItemID', 'StockItemName, UnitPrice');
                 //Controleer of zoekopdracht gevuld
 
-                if (!isset($_SESSION['zoekOpdracht']))
-                {
+                if (!isset($_SESSION['zoekOpdracht'])) {
                     $where = array(
                         array(
                             'name' => 'StockItemID',
@@ -156,8 +148,7 @@ if (!isset($_SESSION['countBestelling'])) {
                             'syntax' => '',
                         )
                     );
-                }
-                else {
+                } else {
                     $where = array(
                         array(
                             'name' => 'StockItemName',
@@ -193,7 +184,7 @@ if (!isset($_SESSION['countBestelling'])) {
                     )
                 );
                 $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-               var_dump($countAllProducts);
+                var_dump($countAllProducts);
                 var_dump($countAllSearchProducts);
                 $x = 15;
                 //Overruled aantalpaginas tellingen
@@ -222,7 +213,7 @@ if (!isset($_SESSION['countBestelling'])) {
                                 echo $allProducts[$y][1];
                             }
                             ?>
-                            <input type="submit"  name="addToCart" dirname="" value="<?= $allProducts[$y][0] ?>"  />
+                            <input type="submit"  name="addToCart" dirname="" value="<?= $allProducts[$y][0] ?>" class="btn btn-info"  />
                         </div>
                         <?php
                         $y++;

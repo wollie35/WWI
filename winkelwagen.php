@@ -1,7 +1,6 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,41 +88,39 @@ session_start();
                     <?php
                     $y = 0;
                     echo '<form action="#" method="post" id="cart">';
-                     echo '<table class="table">';
+                    echo '<table class="table">';
                     ?>
-                            <th>Nummer</th>
-                            <th>Naam</th>
-                            <th>Hoeveelheid</th>
-                            <th>Prijs</th>
-                <?php
-
-                while ($y < count($array)) {
-                ?>
-                <tr>
-                    <?php //Leest de arrays uit en haalt de data deruit ?>
-                    <tr>
-                        <td><?= $array[$y]["ID"] ?></td>
-                        <td><?= $array[$y]["Name"] ?></td>
-                        <td><input type="number" value="1" name="qty" class="qty" /></td>
-                        <td><?= $array[$y]["Price"] . " EURO" ?></td>
-                    </tr>
+                    <th>Nummer</th>
+                    <th>Naam</th>
+                    <th>Hoeveelheid</th>
+                    <th>Prijs</th>
                     <?php
-                    $y++;
+                    while ($y < count($array)) {
+                        ?>
+                        <tr>
+                            <?php //Leest de arrays uit en haalt de data deruit ?>
+                        <tr>
+                            <td><?= $array[$y]["ID"] ?></td>
+                            <td><?= $array[$y]["Name"] ?></td>
+                            <td><input type="number" value="1" name="qty" class="qty" /></td>
+                            <td><?= $array[$y]["Price"] . " EURO" ?></td>
+                        </tr>
+                        <?php
+                        $y++;
                     }
-                ?>
+                    ?>
                     </table>
                     <div>
-                        <button class="btn btn-success col-md-3" style="color: white;" id="calc">Totaal prijs berekenen</button>
+                        <button class="btn btn-info col-md-3" style="color: white;" id="calc">Totaal prijs berekenen</button>
                         <span id="subtotal"></span>
                     </div>
                     <br>
-                    <a class="btn bg-success col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
-                </form>
-                <?php
+                    <a class="btn bg-info col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
+                    </form>
+                    <?php
                     javaScriptCart();
                 } else {
-                    echo 'Sorry maar je winkelmand blijkt leeg te zijn!';
-                    echo ' <img src="includes/img/sad.jpg"  alt="saad" class="sad" ">';
+                    echo '<br>Winkelwagen is leeg.<br>';
                 }
                 ?>
 

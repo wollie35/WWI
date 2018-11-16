@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Wolter van Donk
@@ -14,8 +15,7 @@ Function DBconnectie() {
     }
 }
 
-Function displayModal($title, $text, $close)
-{
+Function displayModal($title, $text, $close) {
     return '
     <script>
         $(function () {
@@ -29,7 +29,7 @@ Function displayModal($title, $text, $close)
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title float-left">'.$title.'</h4>
+                                <h4 class="modal-title float-left">' . $title . '</h4>
                             </div>
                             <div class="modal-body">
                                 <p>' . $text . '</p>
@@ -67,12 +67,11 @@ Function displayHeader() {
 }
 
 Function displayNavBar() {
-    if(!isset($_SESSION['countBestelling']))
-    {
+    if (!isset($_SESSION['countBestelling'])) {
         $_SESSION['countBestelling'] = 0;
     }
-    $result = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
+    $result = '<nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="navbar">
+    <div class="container ">
         <a class="navbar-brand" href="index.php">Wide World Importers</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -95,8 +94,7 @@ Function displayNavBar() {
     return $result;
 }
 
-function JavaScriptCart()
-{
+function JavaScriptCart() {
     print'<script>
                     var Cart = {
 
