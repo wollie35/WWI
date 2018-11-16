@@ -65,6 +65,9 @@ session_start();
                     <br>
                     <input type="submit" value="Bestelling afronden" class="btn btn-info">
                 </form>
+                <form action="index.php">
+                    <button type="submit">Verder winkelen</button>
+                </form>
             </div>
             <!-- /.container -->
 
