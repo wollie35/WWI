@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Wolter van Donk
@@ -14,8 +15,7 @@ Function DBconnectie() {
     }
 }
 
-Function displayModal($title, $text, $close)
-{
+Function displayModal($title, $text, $close) {
     return '
     <script>
         $(function () {
@@ -29,13 +29,13 @@ Function displayModal($title, $text, $close)
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title float-left">'.$title.'</h4>
+                                <h4 class="modal-title float-left">' . $title . '</h4>
                             </div>
                             <div class="modal-body">
                                 <p>' . $text . '</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">' . $close . '</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal">' . $close . '</button>
                             </div>
                         </div>
 
@@ -67,8 +67,7 @@ Function displayHeader() {
 }
 
 Function displayNavBar() {
-    if(!isset($_SESSION['countBestelling']))
-    {
+    if (!isset($_SESSION['countBestelling'])) {
         $_SESSION['countBestelling'] = 0;
     }
     $result = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -95,8 +94,7 @@ Function displayNavBar() {
     return $result;
 }
 
-function JavaScriptCart()
-{
+function JavaScriptCart() {
     print'<script>
                     var Cart = {
 
