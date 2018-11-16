@@ -49,9 +49,10 @@ unset($_SESSION["countBestelling"]);
                     Email:<input type="text" name="email" class="form-control" value="">
                     <br>
                     <hr>
+
                     <br>
 
-                    <select id="CreditCardType" name="CreditCardType" class="form-control">
+                    Bank:<select id="CreditCardType" name="CreditCardType" class="form-control">
                         <option value="5">ABN BRAMBO</option>
                         <option value="6">ING</option>
                         <option value="7">BUNQ</option>
