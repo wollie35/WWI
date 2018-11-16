@@ -35,7 +35,7 @@ Function displayModal($title, $text, $close) {
                                 <p>' . $text . '</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">' . $close . '</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal">' . $close . '</button>
                             </div>
                         </div>
 
