@@ -111,11 +111,11 @@ session_start();
                     ?>
                     </table>
                     <div>
-                        <button class="btn btn-success col-md-3" style="color: white;" id="calc">Totaal prijs berekenen</button>
+                        <button class="btn btn-info col-md-3" style="color: white;" id="calc">Totaal prijs berekenen</button>
                         <span id="subtotal"></span>
                     </div>
                     <br>
-                    <a class="btn bg-success col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
+                    <a class="btn bg-info col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
                     </form>
                     <?php
                     javaScriptCart();
