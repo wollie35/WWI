@@ -43,7 +43,7 @@ unset($_SESSION["countBestelling"]);
                 <br>
                 Uw bestelling wordt geleverd op: <?php
                 print ("<br>");
-                print (filter_input(INPUT_POST, "address", FILTER_SANITIZE_STRING));
+                print (filter_input(INPUT_POST, "adres", FILTER_SANITIZE_STRING));
                 print ("<br>");
                 print (filter_input(INPUT_POST, "postcode", FILTER_SANITIZE_STRING));
                 print ("<br>");
@@ -54,7 +54,7 @@ unset($_SESSION["countBestelling"]);
                 Bedankt voor het winkelen bij Wide World Importers!
                 <br>
                 <form method="post" action="index.php">
-                    <input type="submit" value="Terug naar hoofdpagina" class="btn btn-success">
+                    <input type="submit" value="Terug naar hoofdpagina" class="btn btn-info">
 
                     </div>
                     <!-- /.container -->
