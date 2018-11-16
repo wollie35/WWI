@@ -74,7 +74,7 @@ session_start();
                         <th>Opmerking leverancier</th>
                         <th>Rating</th>
                         <th> <form method="POST">
-                                <input type="submit"  name="addToCart" dirname="" value="<?= $selectedProduct[$x][0] ?> " class="btn btn-info"   />
+                                <input type="submit"  name="addToCart" dirname="" value="<?= $selectedProduct[$x][0] ?>"  />
                                 <form></th>
                                     </tr>
                                     <tr>
