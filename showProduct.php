@@ -9,9 +9,12 @@ session_start();
 
     <head>
         <?= displayHeader(); ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
 
     <body>
+
         <?php
         //Hetzelfde als in index.php, voor het toevoegen van het item
         if (isset($_POST['addToCart']) != '') {
@@ -44,7 +47,84 @@ session_start();
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                <img src="includes/img/fishcycle.PNG"  alt="Banana-Gun" style="width: 150px">
+                <?php
+                $db = DBconnectie();
+                $stockitemId = filter_input(INPUT_GET, 'productID' , FILTER_SANITIZE_STRING);
+                $query = 'SELECT stockItemPhotoPath FROM stockitemphoto WHERE stockitemId = :stockitemId ORDER BY stockItemPhotoMain DESC';
+                $sql = $db->prepare($query);
+                $sql->bindParam(":stockitemId", $stockitemId);
+                $sql->execute();
+
+                $sql = $sql->fetchAll();
+                ?>
+
+                <div id="demo" class="carousel slide" data-ride="carousel" style="width: 45%;" >
+                    <ul class="carousel-indicators" style="width: 50%;" >
+                <?php
+                $y = 0;
+                while($y < count($sql))
+                {
+                    if($y == 0)
+                    {
+                        echo '<li data-target="#demo" data-slide-to="0" class="active"></li>';
+                    }
+                    else
+                    {
+                        echo '<li data-target="#demo" data-slide-to="0"></li>';
+                    }
+                    $y++;
+                }
+                ?>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner" >
+
+                    <?php
+                    $y = 0;
+                    while($y < count($sql))
+                    {
+                        if($y == 0)
+                        {
+                            echo '<div class="carousel-item active">
+                              <img id="showProductSlide" src="includes/img/'.$sql[$y][0].'" width="100%" ">
+                                </div>';
+                        }
+                        if($y != 0)
+                        {
+                            echo '<div class="carousel-item">
+                              <img id="showProductSlide" src="includes/img/'.$sql[$y][0].'" width="100%">
+                                </div>';
+                        }
+                        $y++;
+                    }
+
+
+
+                    ?>
+<!---->
+<!--                    <div class="carousel-item active">-->
+<!--                        <img src="la.jpg" alt="Los Angeles">-->
+<!--                    </div>-->
+<!--                    <div class="carousel-item">-->
+<!--                        <img src="chicago.jpg" alt="Chicago">-->
+<!--                    </div>-->
+<!--                    <div class="carousel-item">-->
+<!--                        <img src="ny.jpg" alt="New York">-->
+<!--                    </div>-->
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev" >
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
+            </div>
+
+
                 <?php
                 $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
                 $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments');
@@ -67,6 +147,7 @@ session_start();
 //                Haalt alle producten op en laat ze in een tabel zien
                 echo '<table class="table">';
                 while ($x < count($selectedProduct)) {
+
                     ?>
                     <tr>
                         <th>Naam</th>
