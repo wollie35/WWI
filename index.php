@@ -34,9 +34,11 @@ if (!isset($_SESSION['countBestelling'])) {
             //Klik op toevoegen aan winkelmand (id)
             if (in_array($_POST['addToCart'], $_SESSION['bestelling']))
             {
+                //Als het item al in de winkelmand zit, laad een modal zien
                 $_POST['addToCart'] = '';
                 echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
             }
+            //Zit die niet in de winkelmand, voeg m toe
             else {
                 $_SESSION['bestelling'][] = $_POST['addToCart'];
                 $_POST['addToCart'] = '';
@@ -59,6 +61,7 @@ if (!isset($_SESSION['countBestelling'])) {
                     <!--<h1 class="my-4">Wide World Importers</h1>-->
                     <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
                     <form method="post">
+<!--                        De zoekknop (als die al een keer is ingevuld, zet de zoekopdracht erin-->
                         <input type="search" class="form-control" name="zoeken"  placeholder="Search..." value='<?php
                         if (isset($_SESSION['zoekOpdracht'])) {
                             echo $_SESSION['zoekOpdracht'];
@@ -68,8 +71,10 @@ if (!isset($_SESSION['countBestelling'])) {
                     </form>
                     </br>
                     <?php
+//                    Als je op zoeken drukt maak een sessie aan, zo onthoud die de zoekopdracht
                     if (isset($_POST['submitZoeken'])) {
                         $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                        //Zet hert paginanummer automatisch op 1
                         $_GET['pageNumber'] = 1;
                     }
 //rows voor query
@@ -91,31 +96,12 @@ if (!isset($_SESSION['countBestelling'])) {
                     $user = (new QueryBuilding('stockgroups', '', $rows))->selectRows()->fetchall();
                     $x = 0;
                     echo '<div class="list-group">';
-//Show categories
+//                  Laat alle categorien zien
                     while ($x < count($user)) {
                         ?>
                         <a href="showProductCategory.php?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
                         <?php
                         $x++;
-                    }
-
-                    //In progress
-                    if ($_GET['categoryId'] != 0) {
-                        $rows = array('S.StockItemName');
-                        $where = array(
-                            array(
-                                'name' => 'SISG.StockGroupID',
-                                'symbol' => '=',
-                                'value' => FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING),
-                                'jointype' => 'INNER',
-                                'jointable' => 'stockitemstockgroups SISG',
-                                'joinvalue1' => 'S.stockitemID',
-                                'joinvalue2' => 'SISG.StockItemID',
-                                'syntax' => '',
-                            )
-                        );
-
-                        $category = (new QueryBuilding('stockitems S', $where, $rows))->selectRows()->fetchall();
                     }
                     ?>
                 </div>
@@ -166,6 +152,7 @@ if (!isset($_SESSION['countBestelling'])) {
                 }
 
                 $allProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows(array('page' => ($_GET['pageNumber'] - 1) * 15), '15')->fetchall();
+                //Tel de producten
                 if (empty(count($allProducts))) {
                     echo "Er zijn geen resultaten gevonden!";
                 } else {
@@ -186,15 +173,15 @@ if (!isset($_SESSION['countBestelling'])) {
                     )
                 );
                 $countAllSearchProducts = (new QueryBuilding('stockitems', $where, $rows))->selectRows()->fetchall();
-                //var_dump($countAllProducts);
-                //var_dump($countAllSearchProducts);
                 $x = 15;
                 //Overruled aantalpaginas tellingen
                 $aantalPaginas = $countAllSearchProducts[0][0] / $x;
                 $aantalPaginas = (number_format($aantalPaginas, 0));
+                //De bovenstaande 2 regels berekenen hoeveel paginas er moeten komen
 
                 $y = 0;
                 ?>
+<!--                Dit laat alle producten zien in-->
                 <form method="POST">
                     <?php
                     while ($y < count($allProducts)) {
@@ -225,6 +212,7 @@ if (!isset($_SESSION['countBestelling'])) {
                     ?>
                 </form>
                 <nav>
+<!--                    Dit maakt paginanummers aan gebaseerd op de eerder aangegeven aantalpaginas-->
                     <div class="pagination">
                         <?php
                         $ap = 1;

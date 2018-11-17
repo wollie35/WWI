@@ -1,3 +1,5 @@
+//Dit laadt automatisch bootstrap modellen in, open source, kan ik ook niet uitleggen
+
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var pkg = require('./package.json');

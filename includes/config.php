@@ -6,6 +6,7 @@ const USERNAME = "root";
 const PASSWORD = "";
 
 // Deze functie set de pathing naar de classes (voor de autoloader), vanaf init.php
+//Het pad naar de Classes map
 function classPath()
 {
     return "Classes";

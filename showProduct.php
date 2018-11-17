@@ -13,6 +13,7 @@ session_start();
 
     <body>
         <?php
+        //Hetzelfde als in index.php, voor het toevoegen van het item
         if (isset($_POST['addToCart']) != '') {
             if (!isset($_SESSION['bestelling'])) {
                 $_SESSION['bestelling'] = array();
@@ -63,6 +64,7 @@ session_start();
                 $selectedProduct = (new QueryBuilding('stockitems ST', $where, $rows))->selectRows()->fetchall();
 
                 $x = 0;
+//                Haalt alle producten op en laat ze in een tabel zien
                 echo '<table class="table">';
                 while ($x < count($selectedProduct)) {
                     ?>

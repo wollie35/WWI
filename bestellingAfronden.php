@@ -1,6 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
+//Maak de winkelmand leeg als de bestelling is afgerond
 unset($_SESSION["bestelling"]);
 unset($_SESSION["countBestelling"]);
 ?>
@@ -13,12 +14,6 @@ unset($_SESSION["countBestelling"]);
     </head>
 
     <body>
-        <?php
-        if (isset($_POST['winkelmandLeegmaken'])) {
-            unset($_SESSION['bestelling']);
-            $_SESSION['countBestelling'] = 0;
-        }
-        ?>
         <!-- Navigation -->
         <?= displayNavBar(); ?>
 
@@ -33,7 +28,7 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
 
-
+<!--                Dit laat de klantinformatie zien die is ingevuld-->
                 Beste <?php
                 print (filter_input(INPUT_POST, "voornaam", FILTER_SANITIZE_STRING));
                 print (" ");

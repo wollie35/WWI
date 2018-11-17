@@ -11,12 +11,6 @@ session_start();
     </head>
 
     <body>
-        <?php
-        if (isset($_POST['winkelmandLeegmaken'])) {
-            unset($_SESSION['bestelling']);
-            $_SESSION['countBestelling'] = 0;
-        }
-        ?>
         <!-- Navigation -->
         <?= displayNavBar(); ?>
 
@@ -28,7 +22,7 @@ session_start();
                 </div>
             </div>
             <!-- /.col-lg-3 -->
-
+<!--Formulier voor het invullen van klantgegevens -->
             <div class="col-lg-9">
                 <form method="POST" action="bestellingAfronden.php">
                     <br>

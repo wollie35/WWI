@@ -6,6 +6,7 @@
  * Date: 6-11-2018
  * Time: 11:44
  */
+//Deze functie legt de databaseconnectie aan
 Function DBconnectie() {
     try {
         $dbh = new PDO('mysql:host=127.0.0.1;dbname=wideworldimporters', 'root', '');
@@ -15,7 +16,9 @@ Function DBconnectie() {
     }
 }
 
+//Deze functie maakt een bootstrap modal aan  (meer info https://getbootstrap.com/docs/4.0/components/modal/)
 Function displayModal($title, $text, $close) {
+//    Simpele javascript die de modal automatisch laat zien zodat we de modal met een if statement kunnen gebruiken
     return '
     <script>
         $(function () {
@@ -43,6 +46,7 @@ Function displayModal($title, $text, $close) {
                 </div> ';
 }
 
+//In deze function staan alle css die we opvragen, jquery etc.
 Function displayHeader() {
     $result = '
         <meta charset="utf-8">
@@ -66,7 +70,10 @@ Function displayHeader() {
     return $result;
 }
 
-Function displayNavBar() {
+//Dit is voor de navigatiebalk
+Function displayNavBar()
+{
+    //Als er nog niks in de winkelmand staat, maak de winkelmand item teller 0
     if (!isset($_SESSION['countBestelling'])) {
         $_SESSION['countBestelling'] = 0;
     }
@@ -85,7 +92,7 @@ Function displayNavBar() {
                     <a class="nav-link" href="login.php">Inloggen</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="winkelwagen.php">Winkelmand (' . $_SESSION['countBestelling'] . ')</a>
+                     <a class="nav-link" href="winkelwagen.php">Winkelmand (' . $_SESSION['countBestelling'] . ')</a>
                 </li>
             </ul>
         </div>
@@ -94,6 +101,16 @@ Function displayNavBar() {
     return $result;
 }
 
+//Javascript voor de berekning van de cart
+//$cart is het id van de winkelwagen
+//$qty is alle hoeveelheden ingevuld in de formulieren
+//$triggerBtn is de bereken bedrag knop
+//$subtotal is het subtotalebedrag
+
+//De calculate function haalt de euro text uit het bedrag en zorgt dat het een los getal is
+//Vervolgens bereknt die het totaalbedrag
+//De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
+//De init function handelt de click naar de berekning af, en zorgt door jquery voor evt foutmelding
 function JavaScriptCart() {
     print'<script>
                     var Cart = {
@@ -107,7 +124,6 @@ function JavaScriptCart() {
                             var total = 0;
 
                             this.$qtyFields.each(function() {
-
                                 var $field = $( this );
                                 var amount = $field.parent().next().text();
                                 var amountR = amount.replace( /\s+/g, "" ).replace( /EURO/, "" );
