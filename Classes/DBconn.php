@@ -8,14 +8,16 @@ class DBconn
     /** Constructor */
     public function __construct()
     {
-
+        //deze wordt standaard gedraaid wanneer de class wordt geladen (dat is niet nodig voor en DB connectie)
     }
 
     /** Methods */
     /** Connectie met de database word hier geopend */
     public function openConnection()
     {
+        //Uit de config haalt die de dbname, gebruikersnaam, en wachtwoord op
         include_once "Includes/config.php";
+        //Probeert een verbinding te leggen, anders geeft een melding van de foutmelding
         try {
             $this->conn = new PDO("mysql:host=" . HOST . ";dbname=" . DB_NAME, USERNAME, PASSWORD);
         } catch (PDOException $exception) {
@@ -32,6 +34,7 @@ class DBconn
 
 
     /** Getters en setters */
+    // wanneer de functie get conn wordt opgevraagd geeft die de connectie
     public function getConn()
     {
         return $this->conn;

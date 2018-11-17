@@ -6,43 +6,85 @@ include_once("Classes/DBconn.php");
 class QueryBuilding extends DBconn {
 
     /** Properties */
+    //Deze variabelen gebruik ik in de class
     private $_tableName;
     private $_rows;
     private $_options;
 
     /** Constructor */
     public function __construct($tableName, $options = "", $rows = "") {
+        //Open verbinding
         $this->openConnection();
+        //table name wordt de tabelname die je meegeeft (dus bijvoorbeeld ) select * from $TABLENAME
         $this->setTableName($tableName);
+        //dit zijn alle rijen met data die je opvraagt, dus bijvoorbeeld select $ROWS from $tablename
         $this->setRows($rows);
+        //Dit zijn alle optionele gegevens voor de query, dus bijvoorbeeld select $rows from $tablename JOIN
         $this->setOptions($options);
     }
 
     /** Methods */
     /*     * Selecteer de benodigde rijen */
     public function selectRows($limit = 0, $max = 0) {
-        //Geef de getters een eigen variable voor gebruikersgemak
+        //Geef de getters een eigen variable voor gebruikersgemak (zie uitleg construct function)
         $tableName = $this->getTableName();
         $rows = $this->getRows();
         $options = $this->getOptions();
         $x = 0;
 
-        //var_dump($options);
-        //De query stmt
+        //Dit is het voorbeeld wat ik even aanhoud:
+        // $tablename = 'stockitems'
+        // $rows = array('stockitemname', 'stockitempassword');
+        //$options = $where = array(
+        //                        array(
+        //                            'name' => 'stockitemname',
+        //                            'symbol' => '=',
+        //                            'value' => '25',
+        //                            'jointype' => 'LEFT',
+        //                            'jointable' => 'stockgroups',
+        //                            'joinvalue1' => 'stockitemname.stockitemID',
+        //                            'joinvalue2' => 'stockgroups.stockitemID',
+        //                            'syntax' => 'AND',)
+
+        //                        array(
+        //                            'name' => 'stockitemname',
+        //                            'symbol' => '!=',
+        //                            'value' => '26',
+        //                            'jointype' => 'INNER',
+        //                            'jointable' => 'stockgroups',
+        //                            'joinvalue1' => 'stockitemname.stockitemID',
+        //                            'joinvalue2' => 'stockgroups.stockitemID',
+        //                            'syntax' => '')
+        //
+
+        //Dit geeft de volgende query:
+        // SELECT stockitemname, stockitempassword FROM stockitems WHERE stockitemname = 25
+        // LEFT JOIN stockgroups ON stockitemname.stockitemID = stockgroups.stockitemID AND
+        // stockitemname != 26 JOIN stockgroups ON stockitemane.stockitemID = stockgroups.stockitemID (deze werkt misschien niet door de alias, is een VB)
+
+        //De query stmt begint met een SELECT (altijd)
         $query = "SELECT ";
         //Voor elke rij (elke waarde meegegeven in de array) zet een , neer tot de laatste
-        foreach ($rows as $key) {
+        foreach ($rows as $key)
+        {
             $x++;
-            if ($x != count($rows)) {
-                if ($max == 1) {
+            //Als $x niet gelijk is aan de het aantal rows (dus SELECT naam, wachtwoord  FROM tablename) hierbij zou gecontroleerd worden of $x niet gelijk is aan 2 (2 rows)
+            if ($x != count($rows))
+            {
+                if ($max == 1)
+                {
+                    //Voeg ook een , toe voor de volgende select vraag
                     $query .= "" . $key . ",  ";
                 } else {
                     $query .= $key . ",  ";
                 }
-            } else {
+            } else
+                {
                 if ($max == 1) {
+                    //Als een max is toegevoegd plak die voor de row
                     $query .= "max(" . $key . ") ";
-                } else {
+                } else
+                    {
                     $query .= $key . " ";
                 }
             }
@@ -50,25 +92,30 @@ class QueryBuilding extends DBconn {
 
         //De query stmt wordt verlengd, met de FROM tableName WHERE
         $query .= "FROM ";
+        //Als de options niet leeg is (dus er geen where is)
         if ($options != "") {
-            foreach ($options as $value) {
-                if ($value['jointype'] != "") {
+            foreach ($options as $value)
+            {
+                //Als joins niet leeg zijn, zet een ( neer
+                if ($value['jointype'] != "")
+                {
                     $query .= '(';
                 }
             }
         }
-
+        //zet de tablename neer dus select * FROM tablename
         $query .= $tableName;
 
         if ($options != '') {
 
             foreach ($options as $value) {
                 if ($value['jointype'] != "") {
-
+                    //Als er joins zijn vul die dan in (dus select * FROM tablename (jointype) join jointable ON joinvalue1 = joinvalue2
                     $query .= " " . $value['jointype'] . " JOIN " . $value['jointable'] . ' ON ' . $value['joinvalue1'] . ' = ' . $value['joinvalue2'] . ')';
                 }
             }
 
+            //Voeg de where toe
             $query .= " WHERE ";
             //Voor elke option (dus bijv WHERE userName(name) =(symbol) jan-peter(value) AND(syntax) 2e rij, lees de meegestuurde array uit en voer uit
             //Let op, de 2e value['name'] is eigenlijk de value, maar ivm met bindparam gebruiken we hier gewoon de naam (regel 54 word de parameter gebind)
@@ -78,6 +125,7 @@ class QueryBuilding extends DBconn {
                 }
             }
 
+            //Voeg een limit toe, als die niet leeg is
             if ($limit != 0) {
                 $query .= ' LIMIT ' . $limit['page'] . ',' . $max . '';
             }
