@@ -51,7 +51,7 @@ session_start();
                     }
 
                     //Sorteert de array of alfabet
-                    $sortOpTeHalenProducten = sort($opTeHalenProducten);
+                    //$sortOpTeHalenProducten = sort($opTeHalenProducten);
 
                     //Select statement voor ophalen Nummer, naam en prijs
                     $query = 'SELECT StockitemId, Stockitemname, Unitprice FROM stockitems WHERE StockitemID = ';

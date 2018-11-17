@@ -32,16 +32,18 @@ if (!isset($_SESSION['countBestelling'])) {
                 $_SESSION['bestelling'] = array();
             }
             //Klik op toevoegen aan winkelmand (id)
-            if (in_array($_POST['addToCart'], $_SESSION['bestelling'])) {
-                echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
-            } else {
+            if (in_array($_POST['addToCart'], $_SESSION['bestelling']))
+            {
                 $_POST['addToCart'] = '';
-                $_SESSION['bestelling'][] = filter_input(INPUT_POST, 'addToCart', FILTER_SANITIZE_STRING);
+                echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
+            }
+            else {
+                $_SESSION['bestelling'][] = $_POST['addToCart'];
+                $_POST['addToCart'] = '';
                 //gebruiken voor tellen winkelmand
                 $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
             }
 
-            //print_r($_SESSION['bestelling']);
         }
         ?>
 
@@ -213,11 +215,13 @@ if (!isset($_SESSION['countBestelling'])) {
                                 echo $allProducts[$y][1];
                             }
                             ?>
-                            <input type="submit"  name="addToCart" dirname="" value="<?= $allProducts[$y][0] ?>" class="btn btn-info"  />
+                            <input type="submit"  name="addToCart" dirname=""  value="<?=$allProducts[$y][0]?>" class="btn btn-info"  />
                         </div>
                         <?php
+
                         $y++;
                     }
+
                     ?>
                 </form>
                 <nav>
