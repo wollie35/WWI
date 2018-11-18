@@ -188,13 +188,7 @@ while ($x < count($selectedProduct)) {
                                 <!-- /.container -->
 
                                 <!-- Footer -->
-                                <footer class="py-5 bg-info">
-                                    <div class="container">
-                                        <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
-                                    </div>
-
-                                    <!-- /.container -->
-                                </footer>
+            <?= displayFooter();?>
 
                                 <!-- Bootstrap core JavaScript -->
                                 <script src="vendor/jquery/jquery.min.js"></script>

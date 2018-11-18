@@ -10,8 +10,6 @@ session_start();
         <?= displayHeader(); ?>
         <link href="css/table.css" rel="stylesheet">
     </head>
-
-    <body>
         <?php
         if (isset($_POST['winkelmandLeegmaken'])) {
             unset($_SESSION['bestelling']);
@@ -91,14 +89,9 @@ session_start();
             ?>
         </div>
         <!-- /.container -->
-
+    <br>
         <!-- Footer -->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
-            </div>
-            <!-- /.container -->
-        </footer>
+        <?= displayFooter();?>
 
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>

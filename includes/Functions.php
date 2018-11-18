@@ -74,6 +74,19 @@ Function displayHeader() {
     return $result;
 }
 
+Function displayFooter() {
+    $result = '
+            <footer class="py-5 bg-info">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    ';
+
+    return $result;
+}
+
 //Dit is voor de navigatiebalk
 Function displayNavBar()
 {
