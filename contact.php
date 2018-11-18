@@ -54,7 +54,7 @@ session_start();
 
 
             </div>
-            <br>
+
             <!-- /.container -->
 
             <!-- Footer -->
