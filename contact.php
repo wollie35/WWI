@@ -29,52 +29,47 @@ session_start();
 
             <div class="col-lg-9">
                 <br>
-                <style>
-                    div.mapouter {
-                        text-align: left;
-                    </style>
 
-                    <!-- map met locatie -->
-                    <div class="mapouter" >
-                        <div class="gmap_canvas">
-                            <iframe width="500" height="400" id="gmap_canvas"
-                                    src="https://maps.google.com/maps?q=Windesheim%20Zwolle&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                            </iframe>
+                <div class="float-right">
+                    <h3>contact:</h3>
+                    <p>
+                        Wide World Importers<br>
+                        Campus 2<br>
+                        8017 CA Zwolle<br>
+                        KvK-Nummer: 53815033 <br>
+                        Info@WWI.com<br>
+                    </p>
+                </div>
+                <!-- map met locatie -->
+                <div class="mapouter" >
+                    <div class="gmap_canvas">
+                        <iframe width="500" height="400" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=Windesheim%20Zwolle&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
 
-                        </div>
-                        <style>.mapouter{text-align:right;height:500px;width:400px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:400px;}</style>
                     </div>
-                    <!-- map met locatie -->
-                    <style>
-                        div.a {
-                            text-align: right;
-                        </style>
-                        <div class="a">
-                            <h3>contact:</h3>
-                            <p>
-                                Wide World Importers<br>
-                                Campus 2<br>
-                                8017 CA Zwolle<br>
-                                KvK-Nummer: 53815033 <br>
-                                Info@WWI.com<br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- /.container -->
+                    <style>.mapouter{text-align:right;height:500px;width:400px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:400px;}</style>
+                </div>
+                <!-- map met locatie -->
 
-                    <!-- Footer -->
-                    <footer class="py-5 bg-info">
-                        <div class="container">
-                            <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
-                        </div>
 
-                        <!-- /.container -->
-                    </footer>
+            </div>
+            <br>
+            <!-- /.container -->
 
-                    <!-- Bootstrap core JavaScript -->
-                    <script src="vendor/jquery/jquery.min.js"></script>
-                    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Footer -->
+            <footer class="py-5 bg-info">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
+                </div>
 
-            </body>
+                <!-- /.container -->
+            </footer>
 
-        </html>
+            <!-- Bootstrap core JavaScript -->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
+</html>
