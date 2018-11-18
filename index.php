@@ -65,7 +65,7 @@ if (isset($_SESSION['zoekOpdracht'])) {
     echo $_SESSION['zoekOpdracht'];
 }
 ?>'>
-                        <input type="submit" class="btn btn-info" name="submitZoeken">
+                        <input type="submit" class="btn btn-info" name="submitZoeken" value="Zoek product">
                     </form>
                     </br>
 <?php
