@@ -37,7 +37,7 @@ session_start();
                         Campus 2<br>
                         8017 CA Zwolle<br>
                         KvK-Nummer: 53815033 <br>
-                        Info@WWI.com<br>
+                        Contact@WWI.com<br>
                     </p>
                 </div>
                 <!-- map met locatie -->
