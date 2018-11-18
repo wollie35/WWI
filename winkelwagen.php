@@ -52,7 +52,6 @@ session_start();
 
                     //Sorteert de array of alfabet
                     //$sortOpTeHalenProducten = sort($opTeHalenProducten);
-
                     //Select statement voor ophalen Nummer, naam en prijs
                     $query = 'SELECT StockitemId, Stockitemname, Unitprice FROM stockitems WHERE StockitemID = ';
 
@@ -98,7 +97,7 @@ session_start();
                     while ($y < count($array)) {
                         ?>
                         <tr>
-                            <?php //Leest de arrays uit en haalt de data deruit ?>
+                            <?php //Leest de arrays uit en haalt de data deruit  ?>
                         <tr>
                             <td><?= $array[$y]["ID"] ?></td>
                             <td><?= $array[$y]["Name"] ?></td>
@@ -128,7 +127,9 @@ session_start();
             <!-- /.container -->
 
             <!-- Footer -->
-            <footer class="py-5 bg-dark">
+            <br>
+
+            <footer class="py-5 bg-info">
                 <div class="container">
                     <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
                 </div>

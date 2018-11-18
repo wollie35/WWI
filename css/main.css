@@ -23,7 +23,7 @@
 /*Bepaalt de achtergrondkleur van de navigatiebalk*/
 #navbar
 {
-    background-color: #4682B4;
+    background-color: #17A2B8;
 }
 
 /*Dit is de CSS van de text op de betaalpagina (gegevens en betalen) */
@@ -31,7 +31,7 @@
 {
     height: 3%;
     width: 100%;
-    background-color: #4682B4;
+    background-color: #17A2B8;
     display: inline-grid;
     font-size: 1.2em;
 }

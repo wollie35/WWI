@@ -49,7 +49,7 @@ session_start();
             <div class="col-lg-9">
                 <?php
                 $db = DBconnectie();
-                $stockitemId = filter_input(INPUT_GET, 'productID' , FILTER_SANITIZE_STRING);
+                $stockitemId = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
                 $query = 'SELECT stockItemPhotoPath FROM stockitemphoto WHERE stockitemId = :stockitemId ORDER BY stockItemPhotoMain DESC';
                 $sql = $db->prepare($query);
                 $sql->bindParam(":stockitemId", $stockitemId);
@@ -60,95 +60,84 @@ session_start();
 
                 <div id="demo" class="carousel slide" data-ride="carousel" style="width: 45%;" >
                     <ul class="carousel-indicators" style="width: 50%;" >
-                <?php
-                $y = 0;
-                while($y < count($sql))
-                {
-                    if($y == 0)
-                    {
-                        echo '<li data-target="#demo" data-slide-to="0" class="active"></li>';
-                    }
-                    else
-                    {
-                        echo '<li data-target="#demo" data-slide-to="0"></li>';
-                    }
-                    $y++;
-                }
-                ?>
-                </ul>
-
-                <!-- The slideshow -->
-                <div class="carousel-inner" >
-
-                    <?php
-                    $y = 0;
-                    while($y < count($sql))
-                    {
-                        if($y == 0)
-                        {
-                            echo '<div class="carousel-item active">
-                              <img id="showProductSlide" src="includes/img/'.$sql[$y][0].'" width="100%" ">
-                                </div>';
+                        <?php
+                        $y = 0;
+                        while ($y < count($sql)) {
+                            if ($y == 0) {
+                                echo '<li data-target="#demo" data-slide-to="0" class="active"></li>';
+                            } else {
+                                echo '<li data-target="#demo" data-slide-to="0"></li>';
+                            }
+                            $y++;
                         }
-                        if($y != 0)
-                        {
-                            echo '<div class="carousel-item">
-                              <img id="showProductSlide" src="includes/img/'.$sql[$y][0].'" width="100%">
+                        ?>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner" >
+
+<?php
+$y = 0;
+while ($y < count($sql)) {
+    if ($y == 0) {
+        echo '<div class="carousel-item active">
+                              <img id="showProductSlide" src="includes/img/' . $sql[$y][0] . '" width="100%" ">
                                 </div>';
-                        }
-                        $y++;
-                    }
+    }
+    if ($y != 0) {
+        echo '<div class="carousel-item">
+                              <img id="showProductSlide" src="includes/img/' . $sql[$y][0] . '" width="100%">
+                                </div>';
+    }
+    $y++;
+}
+?>
+                        <!---->
+                        <!--                    <div class="carousel-item active">-->
+                        <!--                        <img src="la.jpg" alt="Los Angeles">-->
+                        <!--                    </div>-->
+                        <!--                    <div class="carousel-item">-->
+                        <!--                        <img src="chicago.jpg" alt="Chicago">-->
+                        <!--                    </div>-->
+                        <!--                    <div class="carousel-item">-->
+                        <!--                        <img src="ny.jpg" alt="New York">-->
+                        <!--                    </div>-->
+                    </div>
 
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev" >
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
 
-
-                    ?>
-<!---->
-<!--                    <div class="carousel-item active">-->
-<!--                        <img src="la.jpg" alt="Los Angeles">-->
-<!--                    </div>-->
-<!--                    <div class="carousel-item">-->
-<!--                        <img src="chicago.jpg" alt="Chicago">-->
-<!--                    </div>-->
-<!--                    <div class="carousel-item">-->
-<!--                        <img src="ny.jpg" alt="New York">-->
-<!--                    </div>-->
                 </div>
 
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#demo" data-slide="prev" >
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
 
-            </div>
+<?php
+$filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
+$rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments');
+$where = array(
+    array(
+        'name' => 'ST.StockItemID',
+        'symbol' => '=',
+        'value' => $filter,
+        'jointype' => 'INNER',
+        'jointable' => 'suppliers SU',
+        'joinvalue1' => 'ST.supplierID',
+        'joinvalue2' => 'SU.supplierID',
+        'syntax' => '',
+    )
+);
 
+$selectedProduct = (new QueryBuilding('stockitems ST', $where, $rows))->selectRows()->fetchall();
 
-                <?php
-                $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
-                $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments');
-                $where = array(
-                    array(
-                        'name' => 'ST.StockItemID',
-                        'symbol' => '=',
-                        'value' => $filter,
-                        'jointype' => 'INNER',
-                        'jointable' => 'suppliers SU',
-                        'joinvalue1' => 'ST.supplierID',
-                        'joinvalue2' => 'SU.supplierID',
-                        'syntax' => '',
-                    )
-                );
-
-                $selectedProduct = (new QueryBuilding('stockitems ST', $where, $rows))->selectRows()->fetchall();
-
-                $x = 0;
+$x = 0;
 //                Haalt alle producten op en laat ze in een tabel zien
-                echo '<table class="table">';
-                while ($x < count($selectedProduct)) {
-
-                    ?>
+echo '<table class="table">';
+while ($x < count($selectedProduct)) {
+    ?>
                     <tr>
                         <th>Naam</th>
                         <th>Prijs</th>
@@ -166,40 +155,40 @@ session_start();
                                         <td><?= $selectedProduct[$x][3] ?></td>
                                         <td><?= $selectedProduct[$x][4] ?></td>
                                         <td><?php
-                                            if (!empty($selectedProduct[$x][5])) {
-                                                echo $selectedProduct[$x][5] . "</br>";
-                                            } else {
-                                                echo "X</br>";
-                                            }
-                                            ?>
+                if (!empty($selectedProduct[$x][5])) {
+                    echo $selectedProduct[$x][5] . "</br>";
+                } else {
+                    echo "X</br>";
+                }
+                ?>
                                         </td>
                                         <td>
-                                            <?php
-                                            $calculation = $selectedProduct[$x][2] / 5;
-                                            $x = 0;
-                                            while ($x < number_format($calculation, 0)) {
-                                                if ($x <= 4) {
-                                                    echo '&#11088';
-                                                    $x++;
-                                                } else {
-                                                    $x++;
-                                                }
-                                            }
-                                            ?></td>
+    <?php
+    $calculation = $selectedProduct[$x][2] / 5;
+    $x = 0;
+    while ($x < number_format($calculation, 0)) {
+        if ($x <= 4) {
+            echo '&#11088';
+            $x++;
+        } else {
+            $x++;
+        }
+    }
+    ?></td>
 
                                     </tr>
 
 
-                                    <?PHP
-                                }
-                                echo '</table>';
-                                ?>
+                                            <?PHP
+                                        }
+                                        echo '</table>';
+                                        ?>
 
                                 </div>
                                 <!-- /.container -->
 
                                 <!-- Footer -->
-                                <footer class="py-5 bg-dark">
+                                <footer class="py-5 bg-info">
                                     <div class="container">
                                         <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
                                     </div>

@@ -101,7 +101,7 @@ session_start();
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-info">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
         </div>

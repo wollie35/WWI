@@ -22,7 +22,7 @@ session_start();
                 </div>
             </div>
             <!-- /.col-lg-3 -->
-<!--Formulier voor het invullen van klantgegevens -->
+            <!--Formulier voor het invullen van klantgegevens -->
             <div class="col-lg-9">
                 <form method="POST" action="bestellingAfronden.php">
                     <br>
@@ -67,7 +67,7 @@ session_start();
             <!-- /.container -->
 
             <!-- Footer -->
-            <footer class="py-5 bg-dark">
+            <footer class="py-5 bg-info">
                 <div class="container">
                     <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
                 </div>

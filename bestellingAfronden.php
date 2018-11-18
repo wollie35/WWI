@@ -28,7 +28,7 @@ unset($_SESSION["countBestelling"]);
 
             <div class="col-lg-9">
 
-<!--                Dit laat de klantinformatie zien die is ingevuld-->
+                <!--                Dit laat de klantinformatie zien die is ingevuld-->
                 Beste <?php
                 print (filter_input(INPUT_POST, "voornaam", FILTER_SANITIZE_STRING));
                 print (" ");
@@ -55,7 +55,9 @@ unset($_SESSION["countBestelling"]);
                     <!-- /.container -->
 
                     <!-- Footer -->
-                    <footer class="py-5 bg-dark">
+                    <br>
+
+                    <footer class="py-5 bg-info">
                         <div class="container">
                             <p class="m-0 text-center text-white">Copyright &copy; Wide World Importers 2018</p>
                         </div>
