@@ -150,7 +150,7 @@ if (isset($_POST['addToCart']) != '') {
                 <td><?= $selectedProduct[$x][1] ?></td>
                 <td><?= $selectedProduct[$x][2] ?></td>
                 <td><?= $selectedProduct[$x][3] ?></td>
-                <td><?= $selectedProduct[$x][4] ?></td>
+                <td><?= $selectedProduct[$x][4] . ' dagen' ?></td>
                 <td><?php
                     if (!empty($selectedProduct[$x][5])) {
                         echo $selectedProduct[$x][5] . "</br>";
