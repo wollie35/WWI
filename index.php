@@ -187,15 +187,15 @@ if (!isset($_SESSION['countBestelling'])) {
                         ?>
                         <div class="square">
                             <a target="_blank" href="showProduct.php?productID=<?= $allProducts[$y][0] ?>">
-                                <img src="includes/img/<?=$allProducts[$y][3]?>"  class="fishman" ">
+                                <img src="includes/img/<?=$allProducts[$y][3]?>" style="width: 245px; height: 246px;"  class="fishman" ">
                             </a>
 
                             <?= "&euro; " . $allProducts[$y][2] . "</br>" ?>
                             <!-- Limiteerd strlengte voor passen vakjes-->
                             <?php
-                            if (strlen($allProducts[$y][1]) > 30) {
-                                echo substr($allProducts[$y][1], 0, 30);
-                                echo '...';
+                            if (strlen($allProducts[$y][1]) > 26) {
+                                echo substr($allProducts[$y][1], 0, 26);
+                                echo '..';
                             } else {
                                 echo $allProducts[$y][1];
                             }
@@ -212,7 +212,7 @@ if (!isset($_SESSION['countBestelling'])) {
                     <div class="pagination">
                         <?php
                         $ap = 1;
-                        while ($ap < $aantalPaginas + 1) {
+                        while ($ap < $aantalPaginas + 2) {
                             if (filter_input(INPUT_GET, 'pageNumber', FILTER_SANITIZE_STRING) == $ap) {
                                 $color = 'red';
                             } else {

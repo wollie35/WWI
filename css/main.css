@@ -7,8 +7,6 @@
 
 /*Dit is voor alle producten op de hoofdpagina, maak een vierkant*/
 .square {
-    height: 3%;
-    width: 30%;
     border: 1px solid black;
     display: inline-grid;
 }
@@ -19,6 +17,7 @@
 {
     width: 100%;
 }
+
 
 /*Bepaalt de achtergrondkleur van de navigatiebalk*/
 #navbar
