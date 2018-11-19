@@ -1,5 +1,6 @@
 <?php
 require_once "includes/Functions.php";
+require_once "includes/init.php";
 session_start();
 ?>
 <!DOCTYPE html>
@@ -11,6 +12,24 @@ session_start();
     </head>
 
     <body>
+    <?php
+    //product toevoegen bestelling
+    if (isset($_POST['addToCart']) != '') {
+        if (!isset($_SESSION['bestelling'])) {
+            $_SESSION['bestelling'] = array();
+        }
+        //Klik op toevoegen aan winkelmand (id)
+        if (in_array($_POST['addToCart'], $_SESSION['bestelling'])) {
+            echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
+        } else {
+            $_SESSION['bestelling'][] = filter_input(INPUT_POST, 'addToCart', FILTER_SANITIZE_STRING);
+            //gebruiken voor tellen winkelmand
+            $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
+        }
+
+        //print_r($_SESSION['bestelling']);
+    }
+    ?>
         <!-- Navigation -->
         <?= displayNavBar(); ?>
 
@@ -19,12 +38,41 @@ session_start();
 
             <div class="row">
                 <div class="col-lg-3">
+                    <?php
+                    $rows = array('StockGroupID, StockGroupName');
+                    //Where statement voor query
+                    $where = array(
+                        array(
+                            'name' => '',
+                            'symbol' => '',
+                            'value' => '',
+                            'jointype' => '',
+                            'jointable' => '',
+                            'joinvalue1' => '',
+                            'joinvalue2' => '',
+                            'syntax' => '',
+                        )
+                    );
+
+                    $user = (new QueryBuilding('stockgroups', '', $rows))->selectRows()->fetchall();
+                    $x = 0;
+                    echo '<div class="list-group">';
+                    //                  Laat alle categorien zien
+                    while ($x < count($user)) {
+                        ?>
+                        <a href="showProductCategory.php?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
+                        <?php
+                        $x++;
+                    }
+
+                    ?>
                 </div>
             </div>
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
                 <?php
+
                 $categoryID = FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING);
                 $DB = DBconnectie();
                 $query = 'SELECT S.StockItemID, S.StockItemName, S.UnitPrice FROM (stockitems S INNER JOIN stockitemstockgroups SISG ON S.stockitemID = SISG.StockItemID) WHERE SISG.StockGroupID = ' . $categoryID;
@@ -33,6 +81,8 @@ session_start();
 
                 $result = $sql->fetchAll();
 //        VAR_DUMP($result);
+
+                echo '<form method="POST">';
                 $x = 0;
                 while ($x < count($result)) {
                     ?>
@@ -57,25 +107,8 @@ session_start();
     $x++;
 }
 ?>
-                <?php
-                //product toevoegen bestelling
-                if (isset($_GET['addToCart']) != '') {
-                    if (!isset($_SESSION['bestelling'])) {
-                        $_SESSION['bestelling'] = array();
-                    }
-                    //Klik op toevoegen aan winkelmand (id)
-                    if (in_array($_GET['addToCart'], $_SESSION['bestelling'])) {
-                        echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
-                    } else {
-                        $_GET['addToCart'] = '';
-                        $_SESSION['bestelling'][] = filter_input(INPUT_GET, 'addToCart', FILTER_SANITIZE_STRING);
-                        //gebruiken voor tellen winkelmand
-                        $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
-                    }
+            </form>
 
-                    //print_r($_SESSION['bestelling']);
-                }
-                ?>
             </div>
             <!-- /.container -->
 

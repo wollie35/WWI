@@ -118,13 +118,13 @@ if (!isset($_SESSION['countBestelling'])) {
 //Rond getal af op 0 decimalen (1.4 wordt 1)
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
-                $rows = array('StockItemID', 'StockItemName, UnitPrice');
+                $rows = array('stockitems.StockItemID', 'stockitems.StockItemName, stockitems.UnitPrice, stockitems.MainPhoto');
 //Controleer of zoekopdracht gevuld
 
                 if (!isset($_SESSION['zoekOpdracht'])) {
                     $where = array(
                         array(
-                            'name' => 'StockItemID',
+                            'name' => 'stockitems.StockItemID',
                             'symbol' => '!=',
                             'value' => 0,
                             'jointype' => '',
@@ -137,7 +137,7 @@ if (!isset($_SESSION['countBestelling'])) {
                 } else {
                     $where = array(
                         array(
-                            'name' => 'StockItemName',
+                            'name' => 'stockitems.StockItemName',
                             'symbol' => 'LIKE',
                             'value' => '%' . $_SESSION['zoekOpdracht'] . '%',
                             'jointype' => '',
@@ -187,7 +187,7 @@ if (!isset($_SESSION['countBestelling'])) {
                         ?>
                         <div class="square">
                             <a target="_blank" href="showProduct.php?productID=<?= $allProducts[$y][0] ?>">
-                                <img src="includes/img/fishcycle.PNG"  alt="Fishman" class="fishman" ">
+                                <img src="includes/img/<?=$allProducts[$y][3]?>"  class="fishman" ">
                             </a>
 
                             <?= "&euro; " . $allProducts[$y][2] . "</br>" ?>
