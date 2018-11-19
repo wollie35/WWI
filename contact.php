@@ -31,7 +31,7 @@ session_start();
                 <br>
 
                 <div class="float-right">
-                    <h3>contact:</h3>
+                    <h3>Contact:</h3>
                     <p>
                         Wide World Importers<br>
                         Campus 2<br>
@@ -58,7 +58,7 @@ session_start();
             <!-- /.container -->
 
             <!-- Footer -->
-            <?= displayFooter();?>
+            <?= displayFooter(); ?>
 
             <!-- Bootstrap core JavaScript -->
             <script src="vendor/jquery/jquery.min.js"></script>
