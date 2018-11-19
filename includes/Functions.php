@@ -33,6 +33,7 @@ Function displayModal($title, $text, $close) {
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title float-left">' . $title . '</h4>
+                                <h5 class="modal-title float-right">' . date('d-m-Y - h:i:s') . '</h5>
                             </div>
                             <div class="modal-body">
                                 <p>' . $text . '</p>
