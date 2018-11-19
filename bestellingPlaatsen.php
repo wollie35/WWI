@@ -49,7 +49,7 @@ session_start();
                         <option value="6">ING</option>
                         <option value="7">BUNQ</option>
                         <option value="8">KNAB</option>
-                        <option value="8">RABO BANK</option>
+                        <option value="8">RABOBANK</option>
                         <option value="8">SNS BANK</option>
                     </select>
                     <br>
