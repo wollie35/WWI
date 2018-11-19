@@ -128,7 +128,7 @@ Function displayNavBar()
 //De calculate function haalt de euro text uit het bedrag en zorgt dat het een los getal is
 //Vervolgens bereknt die het totaalbedrag
 //De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
-//De init function handelt de click naar de berekning af, en zorgt door jquery voor evt foutmelding
+//De init gebeurt automatisch, die zorgt ervoor dat de subtotaalprijs berekend wordt (ook bij onenters binnen hoeveelheid)
 function JavaScriptCart() {
     print'<script>
                     var Cart = {
