@@ -85,6 +85,7 @@ session_start();
 
 
 //        VAR_DUMP($result);
+                    echo 'Er zijn ' . count($result) . ' producten gevonden.';
 
                 echo '<form method="POST">';
                 $x = 0;
