@@ -117,7 +117,7 @@ if (isset($_POST['addToCart']) != '') {
 
         <?php
         $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
-        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.mainVideo');
+        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.video');
         $where = array(
             array(
                 'name' => 'ST.StockItemID',
