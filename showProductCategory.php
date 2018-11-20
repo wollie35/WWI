@@ -38,6 +38,7 @@ session_start();
 
             <div class="row">
                 <div class="col-lg-3">
+                    <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
                     <?php
                     $rows = array('StockGroupID, StockGroupName');
                     //Where statement voor query
