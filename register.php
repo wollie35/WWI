@@ -1,7 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
-//Zelfde als login, marie claire heeft deze gemaakt
+//Zelfde als login, marie-claire heeft deze gemaakt
 ?>
 <!DOCTYPE html>
 <html lang="en">

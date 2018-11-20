@@ -76,7 +76,6 @@ Function displayHeader() {
 }
 
 Function displayFooter() {
-    $_SESSION['username'] = 'Wolter';
     $result = '
             <footer class="py-5 bg-info">
         <div class="container">

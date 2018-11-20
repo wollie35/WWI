@@ -13,9 +13,25 @@ session_start();
 
     <body>
         <?php
-        if (isset($_POST['winkelmandLeegmaken'])) {
-            unset($_SESSION['bestelling']);
-            $_SESSION['countBestelling'] = 0;
+        if (isset($_POST["login"])) {
+            $db = DBconnectie();
+            $username = "'".$_POST['username']."'";
+
+            $query = 'SELECT id, username, password FROM users WHERE username = '.$username;
+            $sql = $db->prepare($query);
+            var_dump($query);
+            $sql->execute();
+
+            $sql = $sql->fetchAll();
+            print($sql[0][1]);
+            if ($sql[0][2] == $_POST['password']){
+                print("Log in succesvol");
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['id'] = $sql[0][0];
+                echo $_SESSION['id'];
+            } else {
+                print("Fout wachtwoord");
+            }
         }
         ?>
         <!-- Navigation -->
@@ -81,21 +97,7 @@ session_start();
             </div>
         </div>
         <?php
-        if (isset($_POST["login"])) {
-            if ($_POST["password"] == $_POST["passwordConfirmed"]) {
-                $db = DBconnectie();
 
-                $query = 'SELECT * FROM users';
-                $sql = $db->prepare($query);
-                $sql->bindParam(":username", $_POST["username"]);
-                $sql->bindParam(":email", $_POST["email"]);
-                $sql->bindParam(":password", $_POST["password"]);
-                var_dump($query);
-                $sql->execute();
-            } else {
-                print("De wachtwoorden komen niet overeen");
-            }
-        }
         ?>
     </div>
     <!-- /.container -->
