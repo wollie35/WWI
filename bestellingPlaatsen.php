@@ -46,11 +46,12 @@ session_start();
                     <br>
                     Bank:<select id="CreditCardType" name="CreditCardType" class="form-control">
                         <option value="5">ABN BRAMBO</option>
-                        <option value="6">ING</option>
-                        <option value="7">BUNQ</option>
+                        <option value="6">BUNQ</option>
+                        <option value="7">ING</option>
                         <option value="8">KNAB</option>
                         <option value="8">RABOBANK</option>
                         <option value="8">SNS BANK</option>
+                        <option value="8">VAN LANSCHOT</option>
                     </select>
                     <br>
                     Rekeningnummer:<input type="text" name="rekeningnummer" class="form-control" value="">
