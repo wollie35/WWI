@@ -117,7 +117,7 @@ if (isset($_POST['addToCart']) != '') {
 
         <?php
         $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
-        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments');
+        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.mainVideo');
         $where = array(
             array(
                 'name' => 'ST.StockItemID',
@@ -144,6 +144,7 @@ if (isset($_POST['addToCart']) != '') {
                 <th>Leverancier</th>
                 <th>Verwachte levertijd</th>
                 <th>Opmerking leverancier</th>
+                <th>Video</th>
                 <th>Rating</th>
             </tr>
             <tr>
@@ -159,6 +160,7 @@ if (isset($_POST['addToCart']) != '') {
                     }
                     ?>
                 </td>
+                <td><?= '<a target="blank" href="'.$selectedProduct[$x][6].'">Demo' ?></td>
                 <td>
                     <?php
                     $calculation = $selectedProduct[$x][2] / 5;
