@@ -76,6 +76,7 @@ Function displayHeader() {
 }
 
 Function displayFooter() {
+    $_SESSION['username'] = 'Wolter';
     $result = '
             <footer class="py-5 bg-info">
         <div class="container">
@@ -106,9 +107,27 @@ Function displayNavBar()
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
+                ';
+                if(($_SESSION['username']) != '')
+                {
+                    $result .= '<li class="nav-item dropdown">';
+                    $result .= '<a class="nav-link dropdowntoggle" id="navbarDropdownMenuLink" data-toggle="dropdown">Hallo '.ucfirst($_SESSION['username']).'</a>';
+                    $result .= '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item href="#">Mijn gegevens</a>
+                                <a class="dropdown-item href="#">Uitloggen</a>
+                                </div>';
+                    $result .= '</li>';
+
+                }
+                else
+                {
+                    $result .= '
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Inloggen</a>
-                </li>
+                     <a class="nav-link" href="login.php">Inloggen</a>
+                </li>';
+                }
+
+                $result .= '
                 <li class="nav-item">
                      <a class="nav-link" href="winkelwagen.php">Winkelmand (' . $_SESSION['countBestelling'] . ')</a>
                 </li>
