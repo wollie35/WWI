@@ -118,7 +118,7 @@ if (!isset($_SESSION['countBestelling'])) {
 //Rond getal af op 0 decimalen (1.4 wordt 1)
                 $aantalPaginas = (number_format($aantalPaginas, 0));
 
-                $rows = array('stockitems.StockItemID', 'stockitems.StockItemName, stockitems.UnitPrice, stockitems.MainPhoto');
+                $rows = array('stockitems.StockItemID', 'stockitems.StockItemName, stockitems.UnitPrice, stockitems.photo');
 //Controleer of zoekopdracht gevuld
 
                 if (!isset($_SESSION['zoekOpdracht'])) {
