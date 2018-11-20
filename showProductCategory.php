@@ -75,7 +75,7 @@ session_start();
 
                 $categoryID = FILTER_INPUT(INPUT_GET, 'categoryId', FILTER_SANITIZE_STRING);
                 $DB = DBconnectie();
-                $query = 'SELECT S.StockItemID, S.StockItemName, S.UnitPrice FROM (stockitems S INNER JOIN stockitemstockgroups SISG ON S.stockitemID = SISG.StockItemID) WHERE SISG.StockGroupID = ' . $categoryID;
+                $query = 'SELECT S.StockItemID, S.StockItemName, S.UnitPrice, S.photo FROM (stockitems S INNER JOIN stockitemstockgroups SISG ON S.stockitemID = SISG.StockItemID) WHERE SISG.StockGroupID = ' . $categoryID;
                 $sql = $DB->prepare($query);
                 $sql->execute();
 
@@ -88,7 +88,7 @@ session_start();
                     ?>
                     <div class="square">
                         <a target="_blank" href="showProduct.php?productID=<?= $result[$x][1] ?>">
-                            <img src="includes/img/fishcycle.PNG"  alt="Fishman" class="fishman" ">
+                            <img src="includes/img/<?=$result[$x][3]?>"  style="width: 245px; height: 246px;" alt="Fishman" class="fishman">
                         </a>
 
     <?= "&euro; " . $result[$x][2] . "</br>" ?>
@@ -103,12 +103,12 @@ session_start();
                         ?>
                         <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-info"  />
                     </div>
-    <?php
-    $x++;
+                <?php
+                $x++;
 }
 ?>
-            </form>
-
+            </form><br>
+            </div>
             </div>
             <!-- /.container -->
 
