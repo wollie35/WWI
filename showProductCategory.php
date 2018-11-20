@@ -38,6 +38,7 @@ session_start();
 
             <div class="row">
                 <div class="col-lg-3">
+                    <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
                     <?php
                     $rows = array('StockGroupID, StockGroupName');
                     //Where statement voor query
@@ -54,13 +55,13 @@ session_start();
                         )
                     );
 
-                    $user = (new QueryBuilding('stockgroups', '', $rows))->selectRows()->fetchall();
+                    $category = (new QueryBuilding('stockgroups', '', $rows))->selectRows()->fetchall();
                     $x = 0;
                     echo '<div class="list-group">';
                     //                  Laat alle categorien zien
-                    while ($x < count($user)) {
+                    while ($x < count($category)) {
                         ?>
-                        <a href="showProductCategory.php?categoryId=<?= $user[$x][0] ?>" class="list-group-item"><?= $user[$x][1] ?></a>
+                        <a href="showProductCategory.php?categoryId=<?= $category[$x][0] ?>" class="list-group-item"><?= $category[$x][1] ?></a>
                         <?php
                         $x++;
                     }
@@ -80,6 +81,9 @@ session_start();
                 $sql->execute();
 
                 $result = $sql->fetchAll();
+                if (count($result) != 0){
+
+
 //        VAR_DUMP($result);
 
                 echo '<form method="POST">';
@@ -107,7 +111,11 @@ session_start();
                 $x++;
 }
 ?>
-            </form><br>
+            </form>
+               <?php }else{
+                    print "Er zijn geen producten gevonden.";
+                }?>
+                <br>
             </div>
             </div>
             <!-- /.container -->
