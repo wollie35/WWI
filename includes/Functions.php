@@ -91,6 +91,10 @@ Function displayFooter() {
 //Dit is voor de navigatiebalk
 Function displayNavBar()
 {
+    if(!isset($_SESSION['username']))
+    {
+        $_SESSION['username'] = '';
+    }
     //Als er nog niks in de winkelmand staat, maak de winkelmand item teller 0
     if (!isset($_SESSION['countBestelling'])) {
         $_SESSION['countBestelling'] = 0;
@@ -113,10 +117,13 @@ Function displayNavBar()
                     $result .= '<a class="nav-link dropdowntoggle" id="navbarDropdownMenuLink" data-toggle="dropdown">Hallo '.ucfirst($_SESSION['username']).'</a>';
                     $result .= '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item href="#">Mijn gegevens</a>
-                                <a class="dropdown-item href="#">Uitloggen</a>
+                                <a class="dropdown-item href="logout.php">Uitloggen</a>
                                 </div>';
                     $result .= '</li>';
-
+                    $result .= '
+                <li class="nav-item">
+                     <a class="nav-link" href="logout.php">logout</a>
+                </li>';
                 }
                 else
                 {
