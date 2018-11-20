@@ -183,7 +183,7 @@ if (isset($_POST['addToCart']) != '') {
         echo '</table>';
         ?>
         <form method="POST">
-            <input type="submit" class="btn btn-info" name="addToCart" dirname="" value="Voeg toe aan winkelmand"  />
+            <input type="submit" class="btn btn-success" name="addToCart" dirname="" value="Voeg toe aan winkelmand"  />
             <form>
 
     </div>

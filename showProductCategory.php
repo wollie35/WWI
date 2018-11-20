@@ -85,6 +85,7 @@ session_start();
 
 
 //        VAR_DUMP($result);
+                    echo 'Er zijn ' . count($result) . ' producten gevonden.';
 
                 echo '<form method="POST">';
                 $x = 0;
@@ -105,7 +106,7 @@ session_start();
                             echo $result[$x][1];
                         }
                         ?>
-                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-info"  />
+                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-success"  />
                     </div>
                 <?php
                 $x++;
