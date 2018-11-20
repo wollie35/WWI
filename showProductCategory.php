@@ -105,7 +105,7 @@ session_start();
                             echo $result[$x][1];
                         }
                         ?>
-                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-info"  />
+                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-success"  />
                     </div>
                 <?php
                 $x++;
