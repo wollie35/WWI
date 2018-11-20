@@ -87,7 +87,7 @@ session_start();
                 while ($x < count($result)) {
                     ?>
                     <div class="square">
-                        <a target="_blank" href="showProduct.php?productID=<?= $result[$x][1] ?>">
+                        <a target="_blank" href="showProduct.php?productID=<?= $result[$x][0] ?>">
                             <img src="includes/img/<?=$result[$x][3]?>"  style="width: 245px; height: 246px;" alt="Fishman" class="fishman">
                         </a>
 
