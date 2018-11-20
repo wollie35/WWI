@@ -96,7 +96,7 @@ Function displayNavBar()
         $_SESSION['username'] = '';
     }
     //Als er nog niks in de winkelmand staat, maak de winkelmand item teller 0
-    if (!isset($_SESSION['countBestelling'])) {
+    if (!isset($_SESSION['countBestelling']) || $_SESSION['countBestelling'] == '') {
         $_SESSION['countBestelling'] = 0;
     }
     $result = '<nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="navbar">
