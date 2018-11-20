@@ -92,7 +92,7 @@ session_start();
                 while ($x < count($result)) {
                     ?>
                     <div class="square">
-                        <a target="_blank" href="showProduct.php?productID=<?= $result[$x][1] ?>">
+                        <a target="_blank" href="showProduct.php?productID=<?= $result[$x][0] ?>">
                             <img src="includes/img/<?=$result[$x][3]?>"  style="width: 245px; height: 246px;" alt="Fishman" class="fishman">
                         </a>
 
@@ -106,7 +106,7 @@ session_start();
                             echo $result[$x][1];
                         }
                         ?>
-                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-info"  />
+                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-success"  />
                     </div>
                 <?php
                 $x++;

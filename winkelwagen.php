@@ -114,7 +114,7 @@ session_start();
                         <span id="subtotal"></span>
                     </div>
                     <br>
-                    <a class="btn bg-info col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
+                    <a class="btn btn-success col-md-3"  style="color: white;" href="bestellingPlaatsen.php">Afrekenen</a>
                     </form>
                     <?php
                     javaScriptCart();

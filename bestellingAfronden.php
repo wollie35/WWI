@@ -49,7 +49,7 @@ unset($_SESSION["countBestelling"]);
                 Bedankt voor het winkelen bij Wide World Importers!
                 <br>
                 <form method="post" action="index.php">
-                    <input type="submit" value="Terug naar hoofdpagina" class="btn btn-info">
+                    <input type="submit" value="Terug naar hoofdpagina" class="btn btn">
 
                     </div>
                     <!-- /.container -->

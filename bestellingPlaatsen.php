@@ -57,10 +57,10 @@ session_start();
                     <br>
                     Pasnummer:<input type="text" name="pasnummer" class="form-control" value="">
                     <br>
-                    <input type="submit" value="Bestelling afronden" class="btn btn-info ">
+                    <input type="submit" value="Bestelling afronden" class="btn btn-success ">
 
 
-                    <a href="index.php" class="btn btn-info float-right"> verder winkelen </a>
+                    <a href="index.php" class="btn btn-secondary float-right"> verder winkelen </a>
                 </form>
                 <br>
             </div>
