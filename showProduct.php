@@ -160,7 +160,7 @@ if (isset($_POST['addToCart']) != '') {
                     }
                     ?>
                 </td>
-                <td><?= '<a target="blank" href="'.$selectedProduct[$x][6].'">Demo' ?></td>
+                <td><iframe width="560" height="315" src="<?=$selectedProduct[$x][6]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
                 <td>
                     <?php
                     $calculation = $selectedProduct[$x][2] / 5;
@@ -181,6 +181,7 @@ if (isset($_POST['addToCart']) != '') {
             <?PHP
         }
         echo '</table>';
+
         ?>
         <form method="POST">
             <input type="submit" class="btn btn-success" name="addToCart" dirname="" value="Voeg toe aan winkelmand"  />

@@ -39,6 +39,7 @@ if (!isset($_SESSION['countBestelling'])) {
             }
             //Zit die niet in de winkelmand, voeg m toe
             else {
+                echo $_POST['test'];
                 $_SESSION['bestelling'][] = $_POST['addToCart'];
                 $_POST['addToCart'] = '';
                 //gebruiken voor tellen winkelmand
@@ -202,6 +203,7 @@ if (!isset($_SESSION['countBestelling'])) {
                             ?>
                             <input type="submit"  name="addToCart" dirname=""  value="<?= $allProducts[$y][0] ?>" class="btn btn-success"  />
                         </div>
+                        <input type="hidden" name="test" value="<?= $allProducts[$y][0] ?>">
                         <?php
                         $y++;
                     }
