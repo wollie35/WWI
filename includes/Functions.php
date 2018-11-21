@@ -150,7 +150,6 @@ Function displayNavBar()
 //$triggerBtn is de bereken bedrag knop
 //$subtotal is het subtotalebedrag
 
-// De number.onkeydown zorgt ervoor dat er geen - kan worden ingevoerd
 //De calculate function haalt de euro text uit het bedrag en zorgt dat het een los getal is
 //Vervolgens bereknt die het totaalbedrag
 //De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
@@ -159,14 +158,7 @@ function JavaScriptCart() {
     print'<script>
 var number = document.getElementById(\'number\');
 
-                    // Listen for input event on numInput.
-                    number.onkeydown = function(e) {
-                        if(!((e.keyCode > 95 && e.keyCode < 106)
-                          || (e.keyCode > 47 && e.keyCode < 58) 
-                          || e.keyCode == 8)) {
-                            return false;
-                        }
-                    }
+             
                     var Cart = {
 
                         $cart: $( "#cart" ),
