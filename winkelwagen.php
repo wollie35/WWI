@@ -101,7 +101,7 @@ session_start();
                         <tr>
                             <td><?= $array[$y]["ID"] ?></td>
                             <td><?= $array[$y]["Name"] ?></td>
-                            <td><input type="number" value="1" name="qty" class="qty" /></td>
+                            <td><input type="number" id="number" min="1" value="1" name="qty" class="qty" /></td>
                             <td><?= $array[$y]["Price"] . " EURO" ?></td>
                         </tr>
                         <?php
