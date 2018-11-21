@@ -150,15 +150,19 @@ Function displayNavBar()
 //$triggerBtn is de bereken bedrag knop
 //$subtotal is het subtotalebedrag
 
+//Handle change zorgt ervoor dat de value niet over 100 kan en niet onder 0
 //De calculate function haalt de euro text uit het bedrag en zorgt dat het een los getal is
 //Vervolgens bereknt die het totaalbedrag
 //De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
 //De init gebeurt automatisch, die zorgt ervoor dat de subtotaalprijs berekend wordt (ook bij onenters binnen hoeveelheid)
 function JavaScriptCart() {
     print'<script>
-var number = document.getElementById(\'number\');
+                    
 
-             
+  function handleChange(input) {
+    if (input.value < 0) input.value = 0;
+    if (input.value > 100) input.value = 100;
+  }           
                     var Cart = {
 
                         $cart: $( "#cart" ),
