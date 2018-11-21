@@ -74,7 +74,7 @@ if (isset($_POST['addToCart']) != '') {
             </ul>
 
             <!-- The slideshow -->
-            <div class="carousel-inner">
+            <div class="carousel-inner" style="width:300px; height: 300px;">
 
                 <?php
                 $y = 0;
