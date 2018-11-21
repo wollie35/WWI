@@ -160,7 +160,7 @@ if (isset($_POST['addToCart']) != '') {
                     }
                     ?>
                 </td>
-                <td><iframe width="560" height="315" src="<?=$selectedProduct[$x][6]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                <td><iframe width="369.6" height="207.9" src="<?=$selectedProduct[$x][6]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
                 <td>
                     <?php
                     $calculation = $selectedProduct[$x][2] / 5;
