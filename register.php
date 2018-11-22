@@ -71,6 +71,7 @@ session_start();
                 </div>
             </div>
             <?php
+
             if (isset($_POST["register"])) {
                 if ($_POST["password"] == $_POST["passwordConfirmed"]) {
                     $db = DBconnectie();
@@ -83,7 +84,7 @@ session_start();
 //                    var_dump($query);
                     $sql->execute();
                 } else {
-                    print("De wachtwoorden komen niet overeen");
+                    echo displayModal('Foutmelding', 'Het bevestigingswachtwoord moet gelijk zijn aan het wachtwoord', 'Sluit');
                 }
             }
             ?>
