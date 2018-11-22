@@ -80,7 +80,7 @@ session_start();
                     $sql->bindParam(":username", $_POST["username"]);
                     $sql->bindParam(":email", $_POST["email"]);
                     $sql->bindParam(":password", $_POST["password"]);
-                    var_dump($query);
+//                    var_dump($query);
                     $sql->execute();
                 } else {
                     print("De wachtwoorden komen niet overeen");

@@ -13,22 +13,22 @@ session_start();
 
     <body>
         <?php
+        
         if (isset($_POST["login"])) {
             $db = DBconnectie();
             $username = "'".$_POST['username']."'";
 
             $query = 'SELECT id, username, password FROM users WHERE username = '.$username;
             $sql = $db->prepare($query);
-            var_dump($query);
+//            var_dump($query);
             $sql->execute();
 
             $sql = $sql->fetchAll();
-            print($sql[0][1]);
             if ($sql[0][2] == $_POST['password']){
                 print("Log in succesvol");
                 $_SESSION['username'] = $_POST['username'];
-                $_SESSION['id'] = $sql[0][0];
-                echo $_SESSION['id'];
+//                $_SESSION['id'] = $sql[0][0];
+//                echo $_SESSION['id'];
             } else {
                 print("Fout wachtwoord");
             }
