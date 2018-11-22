@@ -22,15 +22,23 @@ session_start();
             $sql = $db->prepare($query);
 //            var_dump($query);
             $sql->execute();
+            header('Location: index.php');
 
             $sql = $sql->fetchAll();
+
+            echo count($sql);
+            if (count($sql) == 1){
             if ($sql[0][2] == $_POST['password']){
                 print("Log in succesvol");
                 $_SESSION['username'] = $_POST['username'];
 //                $_SESSION['id'] = $sql[0][0];
 //                echo $_SESSION['id'];
             } else {
-                print("Fout wachtwoord");
+                echo displayModal("Foutmelding", "De combinatie van gebruikersnaam en e-mailadres is niet geldig", "Sluit");
+
+            }
+        } else {
+                echo displayModal("Foutmelding", "De combinatie van gebruikersnaam en e-mailadres is niet geldig", "Sluit");
             }
         }
         ?>
@@ -68,19 +76,6 @@ session_start();
                                     </div>
                                 </div>
                                 <input type="submit" name="login" value="Inloggen" class="btn btn-info btn-block">
-                                <div class="form-group text-center">
-                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                    <label for="remember">Gegevens onthouden</label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <a href="wachtwoordVergeten.php" tabindex="5" class="forgot-password">Wachtwoord vergeten?</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-12">
