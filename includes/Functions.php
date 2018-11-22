@@ -7,7 +7,8 @@
  * Time: 11:44
  */
 //Deze functie legt de databaseconnectie aan
-Function DBconnectie() {
+Function DBconnectie()
+{
     try {
         $dbh = new PDO('mysql:host=127.0.0.1;dbname=wideworldimporters', 'root', '');
         return $dbh;
@@ -17,7 +18,8 @@ Function DBconnectie() {
 }
 
 //Deze functie maakt een bootstrap modal aan  (meer info https://getbootstrap.com/docs/4.0/components/modal/)
-Function displayModal($title, $text, $close) {
+Function displayModal($title, $text, $close)
+{
 //    Simpele javascript die de modal automatisch laat zien zodat we de modal met een if statement kunnen gebruiken
     return '
     <script>
@@ -48,7 +50,8 @@ Function displayModal($title, $text, $close) {
 }
 
 //In deze function staan alle css die we opvragen, jquery etc.
-Function displayHeader() {
+Function displayHeader()
+{
     $result = '
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,11 +74,22 @@ Function displayHeader() {
     <link href="css/shop-item.css" rel="stylesheet">
    
     ';
+    if(!isset($_SESSION['loggedOut']))
+    {
+        $result .= $_SESSION['loggedOut'] = false;
+    }
+    if($_SESSION['loggedOut'] == false)
+    {
+        $result .= displayModal('Informatie', 'Je bent nu uitgelogd', 'Sluit');
+        $result .=  $_SESSION['loggedOut'] = true;
+
+    }
 
     return $result;
 }
 
-Function displayFooter() {
+Function displayFooter()
+{
     $result = '
             <footer class="py-5 bg-info">
         <div class="container">
@@ -91,8 +105,7 @@ Function displayFooter() {
 //Dit is voor de navigatiebalk
 Function displayNavBar()
 {
-    if(!isset($_SESSION['username']))
-    {
+    if (!isset($_SESSION['username'])) {
         $_SESSION['username'] = '';
     }
     //Als er nog niks in de winkelmand staat, maak de winkelmand item teller 0
@@ -111,29 +124,25 @@ Function displayNavBar()
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 ';
-                if(($_SESSION['username']) != '')
-                {
-                    $result .= '<li class="nav-item dropdown">';
-                    $result .= '<a class="nav-link dropdowntoggle" id="navbarDropdownMenuLink" data-toggle="dropdown">Hallo '.ucfirst($_SESSION['username']).'</a>';
-                    $result .= '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item href="#">Mijn gegevens</a>
-                                <a class="dropdown-item href="logout.php">Uitloggen</a>
-                                </div>';
-                    $result .= '</li>';
-                    $result .= '
-                <li class="nav-item">
-                     <a class="nav-link" href="logout.php">logout</a>
-                </li>';
-                }
-                else
-                {
-                    $result .= '
+    if (($_SESSION['username']) != '')
+    {
+        $result .= '<li class="nav-item dropdown"><div class="dropdown">
+                    <button class="btn dropdown-toggle nav-link bg-transparent " type="button" data-toggle="dropdown">Hallo '.ucfirst($_SESSION['username']).'
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="google.nl">Mijn gegevens</a></li>
+                      <li><a class="dropdown-item" href="logout.php">Uitloggen</a></li>
+        
+                    </ul>
+                  </div>';
+    } else {
+        $result .= '
                 <li class="nav-item">
                      <a class="nav-link" href="login.php">Inloggen</a>
                 </li>';
-                }
+    }
 
-                $result .= '
+    $result .= '
                 <li class="nav-item">
                      <a class="nav-link" href="winkelwagen.php">Winkelmand (' . $_SESSION['countBestelling'] . ')</a>
                 </li>
@@ -155,7 +164,8 @@ Function displayNavBar()
 //Vervolgens bereknt die het totaalbedrag
 //De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
 //De init gebeurt automatisch, die zorgt ervoor dat de subtotaalprijs berekend wordt (ook bij onenters binnen hoeveelheid)
-function JavaScriptCart() {
+function JavaScriptCart()
+{
     print'<script>
                     
 
