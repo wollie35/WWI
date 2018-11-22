@@ -74,7 +74,7 @@ if (isset($_POST['addToCart']) != '') {
             </ul>
 
             <!-- The slideshow -->
-            <div class="carousel-inner" style="width:300px; height: 300px;">
+            <div class="carousel-inner float-left" style="width:300px; height: 300px;">
 
                 <?php
                 $y = 0;
@@ -111,11 +111,15 @@ if (isset($_POST['addToCart']) != '') {
             <a class="carousel-control-next" href="#demo" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </a>
-
         </div>
 
 
+
         <?php
+
+
+
+
         $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
         $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.video');
         $where = array(
@@ -135,6 +139,9 @@ if (isset($_POST['addToCart']) != '') {
 
         $x = 0;
         //                Haalt alle producten op en laat ze in een tabel zien
+        ?>
+        <iframe width="369.6" height="207.9" src="<?=$selectedProduct[$x][6]?>" frameborder="0" class="float-right" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<?php
         echo '<table class="table">';
         while ($x < count($selectedProduct)) {
             ?>
@@ -144,7 +151,6 @@ if (isset($_POST['addToCart']) != '') {
                 <th>Leverancier</th>
                 <th>Verwachte levertijd</th>
                 <th>Opmerking leverancier</th>
-                <th>Video</th>
                 <th>Rating</th>
             </tr>
             <tr>
@@ -160,7 +166,6 @@ if (isset($_POST['addToCart']) != '') {
                     }
                     ?>
                 </td>
-                <td><iframe width="369.6" height="207.9" src="<?=$selectedProduct[$x][6]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
                 <td>
                     <?php
                     $calculation = $selectedProduct[$x][2] / 5;
