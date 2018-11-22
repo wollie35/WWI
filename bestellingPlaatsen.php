@@ -45,6 +45,7 @@ session_start();
                     <br>
                     <br>
                     Bank:<select id="CreditCardType" name="CreditCardType" class="form-control">
+                        <option selected>Selecteer uw bank</option>
                         <option value="5">ABN BRAMBO</option>
                         <option value="6">BUNQ</option>
                         <option value="7">ING</option>
