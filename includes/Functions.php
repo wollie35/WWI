@@ -75,13 +75,24 @@ Function displayHeader()
    
     ';
     if(!isset($_SESSION['loggedOut']))
-    {
-        $result .= $_SESSION['loggedOut'] = false;
-    }
+{
+    $result .= $_SESSION['loggedOut'] = false;
+}
     if($_SESSION['loggedOut'] == false)
     {
         $result .= displayModal('Informatie', 'Je bent nu uitgelogd', 'Sluit');
-      $_SESSION['loggedOut'] = true;
+        $_SESSION['loggedOut'] = true;
+
+    }
+
+    if(!isset($_SESSION['register']))
+    {
+        $result .= $_SESSION['register'] = false;
+    }
+    if($_SESSION['register'] == true)
+    {
+        $result .= displayModal('Melding', 'U heeft een account aangemaakt. U kunt inloggen met uw account', 'Sluit');
+        $_SESSION['register'] = false;
 
     }
 

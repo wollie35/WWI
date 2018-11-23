@@ -1,7 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
-//Marie claire heeft deze gemaakt, leerzaam als zij het kan uitleggen
+//Marie-Claire heeft deze gemaakt, leerzaam als zij het kan uitleggen
 ?>
 <!DOCTYPE html>
 <html lang="en">

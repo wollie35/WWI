@@ -1,7 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
-//Zelfde als login, marie-claire heeft deze gemaakt
+//Zelfde als login, Marie-Claire heeft deze gemaakt
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,18 +73,41 @@ session_start();
             <?php
 
             if (isset($_POST["register"])) {
-                if ($_POST["password"] == $_POST["passwordConfirmed"]) {
-                    $db = DBconnectie();
+                $db = DBconnectie();
+                $username = "'" . $_POST['username'] . "'";
+                $email = "'" . $_POST['email'] . "'";
+                $query2 = 'SELECT username, email FROM users WHERE username = '.$username .' OR email = '. $email;
+                $sql1 = $db->prepare($query2);
+                $sql1->execute();
 
-                    $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
-                    $sql = $db->prepare($query);
-                    $sql->bindParam(":username", $_POST["username"]);
-                    $sql->bindParam(":email", $_POST["email"]);
-                    $sql->bindParam(":password", $_POST["password"]);
-//                    var_dump($query);
-                    $sql->execute();
+
+                $sql1 = $sql1->fetchAll();
+                if (count($sql1) > 0) {
+                    echo displayModal('Foutmelding', 'Gebruikersnaam/e-mailadres bestaat al', 'Sluit');
                 } else {
-                    echo displayModal('Foutmelding', 'Het bevestigingswachtwoord moet gelijk zijn aan het wachtwoord', 'Sluit');
+                    if ($_POST["password"] == $_POST["passwordConfirmed"]) {
+
+
+                        $query = 'INSERT INTO users (username, email, password) VALUES (:username, :email, :password)';
+                        $sql = $db->prepare($query);
+                        $sql->bindParam(":username", $_POST["username"]);
+                        $sql->bindParam(":email", $_POST["email"]);
+                        $sql->bindParam(":password", $_POST["password"]);
+//                    var_dump($query);
+                        $sql->execute();
+                        ?>
+            <?php
+            $_SESSION['register'] = true;
+            ?>
+                        <meta http-equiv="refresh" content="0; url=index.php">
+                        <?php
+                        $_SESSION['register'] = true;
+                        ?>
+
+                        <?php
+                    } else {
+                        echo displayModal('Foutmelding', 'Het bevestigingswachtwoord moet gelijk zijn aan het wachtwoord', 'Sluit');
+                    }
                 }
             }
             ?>
