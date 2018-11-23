@@ -62,7 +62,7 @@ session_start();
                     <input type="submit" value="Bestelling afronden" class="btn btn-success float-right">
 
 
-                    <a href="index.php" class="btn btn-success float-left"> Verder winkelen </a><br>
+                    <a href="index.php" class="btn btn-secondary float-left"> Verder winkelen </a><br>
                 </form>
                 <br>
             </div>
