@@ -29,11 +29,7 @@ if (isset($_POST["login"])) {
     if (count($sql) == 1) {
         if ($sql[0][2] == $_POST['password']) {
             ?>
-            <script language="javascript" type="text/javascript">
-                <!--
-                window.setTimeout('window.open("index.php")', 0);
-                // -->
-            </script>
+            <meta http-equiv="refresh" content="0; url=index.php">
             <?php
             $_SESSION['username'] = $_POST['username'];
 //                $_SESSION['id'] = $sql[0][0];
