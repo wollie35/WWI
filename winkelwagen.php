@@ -12,7 +12,8 @@ session_start();
 
     <body>
         <?php
-        if (isset($_POST['winkelmandLeegmaken'])) {
+        if (isset($_POST['winkelmandLeegmaken']))
+        {
             unset($_SESSION['bestelling']);
             $_SESSION['countBestelling'] = 0;
         }

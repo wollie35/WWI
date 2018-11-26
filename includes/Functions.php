@@ -130,7 +130,7 @@ Function displayNavBar()
                     <button class="btn dropdown-toggle nav-link bg-transparent " type="button" data-toggle="dropdown">Hallo '.ucfirst($_SESSION['username']).'
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="google.nl">Mijn gegevens</a></li>
+                      <li><a class="dropdown-item" href="myDetails.php">Mijn gegevens</a></li>
                       <li><a class="dropdown-item" href="logout.php">Uitloggen</a></li>
         
                     </ul>

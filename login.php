@@ -32,7 +32,7 @@ if (isset($_POST["login"])) {
             <meta http-equiv="refresh" content="0; url=index.php">
             <?php
             $_SESSION['username'] = $_POST['username'];
-//                $_SESSION['id'] = $sql[0][0];
+                $_SESSION['id'] = $sql[0][0];
 //                echo $_SESSION['id'];
         } else {
             echo displayModal("Foutmelding", "De combinatie van gebruikersnaam en e-mailadres is niet geldig", "Sluit");

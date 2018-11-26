@@ -28,6 +28,8 @@ if (!isset($_SESSION['countBestelling'])) {
         <?php
         //product toevoegen bestelling
         if (isset($_POST['addToCart']) != '') {
+            preg_match_all('!\d+!', $_POST['addToCart'], $matches);
+            $_POST['addToCart'] = $matches[0][0];
             if (!isset($_SESSION['bestelling'])) {
                 $_SESSION['bestelling'] = array();
             }
@@ -200,7 +202,7 @@ if (!isset($_SESSION['countBestelling'])) {
                                 echo $allProducts[$y][1];
                             }
                             ?>
-                            <input type="submit"  name="addToCart" dirname=""  value="<?= $allProducts[$y][0] ?>" class="btn btn-success"  />
+                            <input type="submit"  name="addToCart" dirname=""  value="Voeg toe aan winkelmand (<?= $allProducts[$y][0] ?>)" class="btn btn-success"  />
                         </div>
                         <?php
                         $y++;
