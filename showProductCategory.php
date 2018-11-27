@@ -15,6 +15,8 @@ session_start();
     <?php
     //product toevoegen bestelling
     if (isset($_POST['addToCart']) != '') {
+        preg_match_all('!\d+!', $_POST['addToCart'], $matches);
+        $_POST['addToCart'] = $matches[0][0];
         if (!isset($_SESSION['bestelling'])) {
             $_SESSION['bestelling'] = array();
         }
@@ -22,7 +24,7 @@ session_start();
         if (in_array($_POST['addToCart'], $_SESSION['bestelling'])) {
             echo displayModal('Informatie', 'Dit product staat al in de winkelmand, je kan de hoeveelheid aanpassen in de winkelmand', 'Sluit');
         } else {
-            $_SESSION['bestelling'][] = filter_input(INPUT_POST, 'addToCart', FILTER_SANITIZE_STRING);
+            $_SESSION['bestelling'][] =  $_POST['addToCart'];
             //gebruiken voor tellen winkelmand
             $_SESSION['countBestelling'] = count($_SESSION['bestelling']);
         }
@@ -106,7 +108,7 @@ session_start();
                             echo $result[$x][1];
                         }
                         ?>
-                        <input type="submit"  name="addToCart" dirname="" value="<?= $result[$x][0] ?>" class="btn btn-success"  />
+                        <input type="submit"  name="addToCart" dirname="" value="Voeg toe aan winkelmand (<?= $result[$x][0] ?>)" class="btn btn-success"  />
                     </div>
                 <?php
                 $x++;

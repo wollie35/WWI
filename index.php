@@ -59,6 +59,15 @@ if (!isset($_SESSION['countBestelling'])) {
 
                 <div class="col-lg-3">
                     <!--<h1 class="my-4">Wide World Importers</h1>-->
+                    <?php
+                    //                    Als je op zoeken drukt maak een sessie aan, zo onthoud die de zoekopdracht
+                    if (isset($_POST['submitZoeken']))
+                    {
+                        $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                        //Zet hert paginanummer automatisch op 1
+                        $_GET['pageNumber'] = 1;
+                    }
+                    ?>
                     <img src="includes/img/logo.png" alt="logo" style="width: 90%;">
                     <form method="post">
                         <!--                        De zoekknop (als die al een keer is ingevuld, zet de zoekopdracht erin-->
@@ -66,17 +75,16 @@ if (!isset($_SESSION['countBestelling'])) {
                         if (isset($_SESSION['zoekOpdracht'])) {
                             echo $_SESSION['zoekOpdracht'];
                         }
+                        else
+                        {
+                            unset($_SESSION['zoekOpdracht']);
+                        }
                         ?>'>
                         <input type="submit" class="btn btn-info" name="submitZoeken" value="Zoek product">
                     </form>
                     </br>
                     <?php
-//                    Als je op zoeken drukt maak een sessie aan, zo onthoud die de zoekopdracht
-                    if (isset($_POST['submitZoeken'])) {
-                        $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
-                        //Zet hert paginanummer automatisch op 1
-                        $_GET['pageNumber'] = 1;
-                    }
+
 //rows voor query
                     $rows = array('StockGroupID, StockGroupName');
 //Where statement voor query
@@ -210,11 +218,21 @@ if (!isset($_SESSION['countBestelling'])) {
                     ?>
                 </form>
                 <nav>
+                    <?php
+                    if($_SESSION['zoekOpdracht'] == '')
+                    {
+                        $aantalPaginas = $aantalPaginas + 2;
+                    }
+                    else
+                    {
+                        $aantalPaginas = $aantalPaginas + 1;
+                    }
+                    ?>
                     <!--                    Dit maakt paginanummers aan gebaseerd op de eerder aangegeven aantalpaginas-->
                     <div class="pagination">
                         <?php
                         $ap = 1;
-                        while ($ap < $aantalPaginas + 2) {
+                        while ($ap < $aantalPaginas) {
                             if (filter_input(INPUT_GET, 'pageNumber', FILTER_SANITIZE_STRING) == $ap) {
                                 $color = 'red';
                             } else {
