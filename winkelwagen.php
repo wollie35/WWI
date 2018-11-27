@@ -47,7 +47,7 @@ session_start();
                     //Telt hoeveel items er in de bestelling staan
                     while ($y < count($_SESSION['bestelling'])) {
                         //Voeg geselecteerde producten toe aan een nieuwe array
-                        $opTeHalenProducten[] = $_SESSION['bestelling'][$y];
+                        $opTeHalenProducten[] = htmlspecialchars($_SESSION['bestelling'][$y]);
                         $y++;
                     }
 
@@ -75,7 +75,7 @@ session_start();
                     $x = 0;
 
                     while ($x < count($result)) {
-                        $array[] = array("ID" => $result[$x][0], "Name" => $result[$x][1], "Price" => $result[$x][2], "Quantity" => 1);
+                        $array[] = array("ID" => htmlspecialchars($result[$x][0]), "Name" => htmlspecialchars($result[$x][1]), "Price" => htmlspecialchars($result[$x][2]), "Quantity" => htmlspecialchars(1));
                         $x++;
                     }
 

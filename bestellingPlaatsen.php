@@ -28,7 +28,7 @@ if(!isset($_SESSION['id']))
             <!-- /.col-lg-3 -->
             <?php
             $DB = DBconnectie();
-            $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr FROM usersdetails WHERE UserId = '.$_SESSION['id'] ;
+            $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr FROM usersdetails WHERE UserId = '.htmlspecialchars($_SESSION['id']) ;
             $sql = $DB->prepare($query);
 
             $sql->execute();

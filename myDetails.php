@@ -25,7 +25,7 @@ CheckLogIn(TRUE);
 
         <?php
         $db = Dbconnectie();
-        $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr, UserId FROM usersdetails WHERE UserId = '.$_SESSION['id'] ;
+        $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr, UserId FROM usersdetails WHERE UserId = '.htmlspecialchars($_SESSION['id']);
         $sql2 = $db->prepare($query);
 
         $sql2->execute();
@@ -48,7 +48,7 @@ CheckLogIn(TRUE);
                 $sql->bindParam(":UserEmail", $_POST["email"]);
                 $sql->bindParam(":UserIBAN", $_POST["rekeningnummer"]);
                 $sql->bindParam(":UserPasnr", $_POST["pasnummer"]);
-                $sql->bindParam(":UserId", $_SESSION['id']);
+                $sql->bindParam(":UserId", htmlspecialchars($_SESSION['id']));
                 $sql->execute();
             }
             else
@@ -67,13 +67,13 @@ CheckLogIn(TRUE);
                 $sql3->bindParam(":UserEmail", $_POST["email"]);
                 $sql3->bindParam(":UserIBAN", $_POST["rekeningnummer"]);
                 $sql3->bindParam(":UserPasnr", $_POST["pasnummer"]);
-                $sql3->bindParam(":UserId", $_SESSION['id']);
+                $sql3->bindParam(":UserId", htmlspecialchars($_SESSION['id']));
                 $sql3->execute();
             }
 
         }
 
-        $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr, UserId FROM usersdetails WHERE UserId = '.$_SESSION['id'] ;
+        $query = 'SELECT UserFirstname, UserLastName, UserAdres, UserPostal, UserCity, UserPhone, UserEmail, UserIBAN, UserPasnr, UserId FROM usersdetails WHERE UserId = '.htmlspecialchars($_SESSION['id']) ;
         $sql4 = $db->prepare($query);
 
         $sql4->execute();

@@ -10,10 +10,10 @@ if (!isset($_GET['pageNumber'])) {
     $_GET['pageNumber'] = 1;
 }
 if (!isset($_SESSION['zoekOpdracht'])) {
-    $_SESSION['zoekOpdracht'] = '';
+    $_SESSION['zoekOpdracht'] = htmlspecialchars('');
 }
 if (!isset($_SESSION['countBestelling'])) {
-    $_SESSION['countBestelling'] = '';
+    $_SESSION['countBestelling'] = htmlspecialchars('');
 }
 ?>
 
@@ -29,7 +29,7 @@ if (!isset($_SESSION['countBestelling'])) {
         //product toevoegen bestelling
         if (isset($_POST['addToCart']) != '') {
             preg_match_all('!\d+!', $_POST['addToCart'], $matches);
-            $_POST['addToCart'] = $matches[0][0];
+            $_POST['addToCart'] = htmlspecialchars($matches[0][0]);
             if (!isset($_SESSION['bestelling'])) {
                 $_SESSION['bestelling'] = array();
             }
@@ -63,7 +63,7 @@ if (!isset($_SESSION['countBestelling'])) {
                     //                    Als je op zoeken drukt maak een sessie aan, zo onthoud die de zoekopdracht
                     if (isset($_POST['submitZoeken']))
                     {
-                        $_SESSION['zoekOpdracht'] = $_POST['zoeken'];
+                        $_SESSION['zoekOpdracht'] = htmlspecialchars($_POST['zoeken']);
                         //Zet hert paginanummer automatisch op 1
                         $_GET['pageNumber'] = 1;
                     }
