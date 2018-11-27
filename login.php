@@ -33,7 +33,7 @@ if (isset($_POST["login"])) {
             <?php
             $_SESSION['username'] = $_POST['username'];
                 $_SESSION['id'] = $sql[0][0];
-//                echo $_SESSION['id'];
+                $_SESSION['loggedIn'] = TRUE;
         } else {
             echo displayModal("Foutmelding", "De combinatie van gebruikersnaam en e-mailadres is niet geldig", "Sluit");
 

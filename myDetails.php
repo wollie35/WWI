@@ -1,6 +1,7 @@
 <?php
 require_once "includes/Functions.php";
 session_start();
+CheckLogIn(TRUE);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -175,12 +175,12 @@ Function displayNavBar()
 //Vervolgens bereknt die het totaalbedrag
 //De trigger function zorgt ervoor dat als je op de knop drukt de totaalprijs wordt berekend
 //De init gebeurt automatisch, die zorgt ervoor dat de subtotaalprijs berekend wordt (ook bij onenters binnen hoeveelheid)
-function JavaScriptCart()
+function JavaScriptCart ()
 {
     print'<script>
-                    
-
-  function handleChange(input) {
+                   
+  function handleChange(input) 
+  {
     if (input.value < 0) input.value = 0;
     if (input.value > 100) input.value = 100;
   }           
@@ -253,25 +253,16 @@ function JavaScriptCart()
                 </script>';
 }
 
-function slideShow()
+Function CheckLogIn($required)
 {
-    print '<script> var slideIndex = 0;
-showSlides();
+    if(!isset($_SESSION['loggedIn']))
+    {
+        $_SESSION['loggedIn'] = FALSE;
+    }
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
+    if($_SESSION['loggedIn'] == FALSE && $required == TRUE)
+    {
+        echo '<meta http-equiv="refresh" content="0; url=index.php">';
+        exit();
     }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 2000); // Change image every 10 seconds
-}</script>';
 }
