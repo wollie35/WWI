@@ -7,6 +7,7 @@
  */
 session_start();
 session_destroy();
+session_start();
 $_SESSION['loggedOut'] = true;
 
 header('Location: index.php');

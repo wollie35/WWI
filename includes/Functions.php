@@ -78,10 +78,10 @@ Function displayHeader()
 {
     $result .= $_SESSION['loggedOut'] = false;
 }
-    if($_SESSION['loggedOut'] == false)
+    if($_SESSION['loggedOut'] == true)
     {
         $result .= displayModal('Informatie', 'Je bent nu uitgelogd', 'Sluit');
-        $_SESSION['loggedOut'] = true;
+        $_SESSION['loggedOut'] = false;
 
     }
 
