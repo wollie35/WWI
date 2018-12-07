@@ -121,7 +121,7 @@ if (isset($_POST['addToCart']) != '') {
 
 
         $filter = filter_input(INPUT_GET, 'productID', FILTER_SANITIZE_STRING);
-        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.video');
+        $rows = array('ST.StockItemID', 'ST.StockItemName', 'ST.UnitPrice', 'SU.SupplierName', 'ST.LeadTimeDays', 'ST.MarketingComments', 'ST.video', 'SH.QuantityOnHand');
         $where = array(
             array(
                 'name' => 'ST.StockItemID',
@@ -131,7 +131,17 @@ if (isset($_POST['addToCart']) != '') {
                 'jointable' => 'suppliers SU',
                 'joinvalue1' => 'ST.supplierID',
                 'joinvalue2' => 'SU.supplierID',
-                'syntax' => '',
+                'syntax' => 'AND',
+            ),
+            array(
+                'name' => 'ST.StockItemID',
+                'symbol' => '!=',
+                'value' => '0',
+                'jointype' => 'INNER',
+                'jointable' => 'stockitemholdings SH',
+                'joinvalue1' => 'ST.StockItemID',
+                'joinvalue2' => 'SH.StockItemID',
+                'syntax' => ''
             )
         );
 
@@ -151,6 +161,7 @@ if (isset($_POST['addToCart']) != '') {
                 <th>Leverancier</th>
                 <th>Verwachte levertijd</th>
                 <th>Opmerking leverancier</th>
+                <th>Aantal op voorraad</th>
                 <th>Rating</th>
             </tr>
             <tr>
@@ -166,6 +177,7 @@ if (isset($_POST['addToCart']) != '') {
                     }
                     ?>
                 </td>
+                <td><?= $selectedProduct[$x][7]?></td>
                 <td>
                     <?php
                     $calculation = $selectedProduct[$x][2] / 5;
