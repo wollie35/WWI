@@ -1,0 +1,36 @@
+/*Haalt alle standaard witte ruimte tussen dingen weg.*/
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+/*Dit is voor alle producten op de hoofdpagina, maak een vierkant*/
+.square {
+    border: 1px solid black;
+    display: inline-grid;
+}
+
+
+/*Dit is voor ons geweldige plaatje*/
+.fishman
+{
+    width: 100%;
+}
+
+
+/*Bepaalt de achtergrondkleur van de navigatiebalk*/
+#navbar
+{
+    background-color: #17A2B8;
+}
+
+/*Dit is de CSS van de text op de betaalpagina (gegevens en betalen) */
+#Betalen
+{
+    height: 3%;
+    width: 100%;
+    background-color: #17A2B8;
+    display: inline-grid;
+    font-size: 1.2em;
+}
